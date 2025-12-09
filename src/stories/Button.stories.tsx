@@ -45,7 +45,15 @@ export const EnergyAI: Story = {
   },
 };
 
-// 3. Destructive
+// 3. Ghost Button
+export const Ghost: Story = {
+  args: {
+    variant: "ghost",
+    children: "View Details",
+  },
+};
+
+// 4. Destructive
 export const Destructive: Story = {
   args: {
     variant: "destructive",
@@ -58,7 +66,7 @@ export const Destructive: Story = {
   },
 };
 
-// 4. Loading State
+// 5. Loading State
 export const Loading: Story = {
   args: {
     variant: "primary",
