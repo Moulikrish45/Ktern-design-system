@@ -32,7 +32,15 @@ export const Primary: Story = {
   },
 };
 
-// 2. The "AI Spark" Energy Button
+// 2. Secondary Action
+export const Secondary: Story = {
+  args: {
+    variant: "secondary",
+    children: "Secondary Action",
+  },
+};
+
+// 3. The "AI Spark" Energy Button
 export const EnergyAI: Story = {
   args: {
     variant: "energy",
@@ -45,15 +53,19 @@ export const EnergyAI: Story = {
   },
 };
 
-// 3. Ghost Button
+// 4. Ghost Button
 export const Ghost: Story = {
   args: {
     variant: "ghost",
-    children: "View Details",
+    children: (
+      <>
+        Tertiary Link <ArrowRight className="w-4 h-4" />
+      </>
+    ),
   },
 };
 
-// 4. Destructive
+// 5. Destructive
 export const Destructive: Story = {
   args: {
     variant: "destructive",
@@ -66,7 +78,7 @@ export const Destructive: Story = {
   },
 };
 
-// 5. Loading State
+// 6. Loading State
 export const Loading: Story = {
   args: {
     variant: "primary",
@@ -74,3 +86,59 @@ export const Loading: Story = {
     children: "Processing...",
   },
 };
+
+// 7. All Variants Grid (Layout Test)
+export const AllVariants: Story = {
+  render: () => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 border border-border rounded-xl bg-background text-foreground">
+      <div className="space-y-2">
+        <h3 className="text-sm font-semibold text-muted-foreground">Primary (Cosmic Polish)</h3>
+        <Button variant="primary">Save Changes</Button>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-sm font-semibold text-muted-foreground">Secondary (Outline)</h3>
+        <Button variant="secondary">Secondary Action</Button>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-sm font-semibold text-muted-foreground">Energy (Aurora Flow)</h3>
+        <Button variant="energy">
+          <Sparkles className="w-4 h-4 animate-pulse" />
+          Generate Insights
+        </Button>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-sm font-semibold text-muted-foreground">Destructive (Red Alert)</h3>
+        <Button variant="destructive">
+          <Trash2 className="w-4 h-4" />
+          Delete Project
+        </Button>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-sm font-semibold text-muted-foreground">Ghost (Link)</h3>
+        <Button variant="ghost">
+          Tertiary Link <ArrowRight className="w-4 h-4" />
+        </Button>
+      </div>
+      <div className="space-y-2">
+        <h3 className="text-sm font-semibold text-muted-foreground">Loading</h3>
+        <Button variant="primary" isLoading>Processing...</Button>
+      </div>
+    </div>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+  }
+};
+
+// 8. Dark Mode Showcase (Explicit)
+export const AllVariantsDark: Story = {
+  ...AllVariants,
+  name: "All Variants (Forced Dark Mode)",
+  decorators: [
+    (Story) => (
+      <div className="dark bg-[#100c08] p-8 min-h-screen">
+        <Story />
+      </div>
+    )
+  ]
+}

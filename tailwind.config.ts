@@ -43,14 +43,40 @@ const config: Config = {
         primary: "0 8px 16px -4px rgba(169, 32, 62, 0.2)",
         secondary: "0 8px 16px -4px rgba(255, 143, 0, 0.2)",
       },
-      animation: {
-        "fade-in-up": "fade-in-up 300ms ease-out",
-      },
       keyframes: {
         "fade-in-up": {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
+        pulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
+        shake: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "25%": { transform: "translateX(-2px)" },
+          "75%": { transform: "translateX(2px)" },
+        },
+        "gradient-xy": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
+      },
+      animation: {
+        "fade-in-up": "fade-in-up 300ms ease-out",
+        shimmer: "shimmer 2s infinite",
+        shake: "shake 0.5s ease-in-out",
+        "gradient-xy": "gradient-xy 3s ease infinite",
       },
     },
   },

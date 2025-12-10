@@ -9,15 +9,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-brand-primary text-white hover:bg-[#76172c] focus:ring-brand-primary/50 shadow-lg shadow-[rgba(169,32,62,0.2)] active:translate-y-0.5 dark:bg-[#c41e3a] dark:hover:bg-[#a9203e] dark:shadow-[rgba(196,30,58,0.2)]",
+          "relative overflow-hidden bg-brand-primary text-white shadow-lg shadow-[rgba(169,32,62,0.2)] hover:shadow-xl active:translate-y-0.5 dark:bg-brand-primary dark:hover:bg-[#c41e3a] dark:shadow-[rgba(196,30,58,0.2)] before:absolute before:inset-0 before:translate-x-[-100%] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent hover:before:animate-[shimmer_1.5s_infinite]",
         secondary:
-          "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300 focus:ring-gray-200 dark:bg-transparent dark:text-[#a8a29e] dark:border-[#44403c] dark:hover:bg-[#1c1917] dark:focus:ring-[#44403c]",
+          "bg-white dark:bg-[#1c1917] text-brand-primary border border-brand-primary px-6 py-2.5 rounded-md font-medium hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors",
         ghost:
-          "bg-transparent text-brand-primary hover:bg-brand-primary/5 focus:ring-brand-primary/20 dark:text-[#c41e3a] dark:hover:bg-[#c41e3a]/10",
+          "bg-transparent text-brand-slate dark:text-gray-400 font-medium hover:bg-transparent hover:text-brand-secondary dark:hover:text-brand-secondary transition-colors",
         destructive:
-          "bg-white text-danger border border-danger hover:bg-danger hover:text-white hover:border-danger focus:ring-danger/20 transition-all duration-300 dark:bg-transparent dark:text-[#de828a] dark:border-[#de828a] dark:hover:bg-[#de828a] dark:hover:text-[#100c08]",
+          "bg-white text-danger border border-danger hover:bg-danger hover:text-white hover:border-danger hover:animate-[shake_0.5s_ease-in-out] focus:ring-danger/20 transition-all duration-300 dark:bg-transparent dark:text-[#de828a] dark:border-[#de828a] dark:hover:bg-[#de828a] dark:hover:text-[#100c08]",
         energy:
-          "bg-gradient-to-r from-brand-primary via-[#d94e28] to-brand-secondary text-white hover:opacity-90 focus:ring-brand-secondary/50 shadow-lg shadow-[rgba(255,143,0,0.2)]",
+          "bg-gradient-to-r from-brand-primary via-[#d94e28] to-brand-secondary bg-[length:200%_200%] animate-[gradient-xy_3s_ease_infinite] text-white hover:opacity-90 focus:ring-brand-secondary/50 shadow-lg shadow-[rgba(255,143,0,0.2)]",
       },
       size: {
         sm: "h-8 px-3 text-sm",
