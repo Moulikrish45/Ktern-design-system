@@ -1,4 +1,6 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
+import { ArrowRight } from 'lucide-react';
 
 type IconType = 'rocket' | 'flask' | 'enterprise';
 
@@ -6,6 +8,8 @@ interface HoverExpandCardProps {
     icon: IconType;
     title?: string;
     description?: string;
+    /** Optional click handler for the card */
+    onClick?: () => void;
 }
 
 const icons: Record<IconType, React.ReactNode> = {
@@ -48,10 +52,11 @@ const descriptions: Record<IconType, string> = {
     enterprise: 'Get a bird\'s-eye view of your complete SAP ecosystem.',
 };
 
-export const HoverExpandCardAlt = ({
+export const HoverExpandCard = ({
     icon,
     title = titles[icon],
     description = descriptions[icon],
+    onClick,
 }: HoverExpandCardProps) => {
     // Generate random particles
     const particles = Array.from({ length: 20 }, (_, i) => ({
@@ -63,11 +68,21 @@ export const HoverExpandCardAlt = ({
         delay: Math.random() * 2,
     }));
 
+    const Component = onClick ? 'button' : 'div';
+    const props = onClick ? { onClick, type: 'button' as const } : {};
+
     return (
-        <div className="group relative bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-border-light dark:border-border-dark hover:border-brand-primary transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer overflow-hidden">
+        <Component
+            {...props}
+            className={cn(
+                "group relative bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-border-light dark:border-border-dark overflow-hidden transition-all duration-300 text-left w-full",
+                "hover:border-brand-primary hover:shadow-xl hover:-translate-y-1",
+                onClick && "cursor-pointer"
+            )}
+        >
             {/* Animated Particles Background - masked to avoid icon */}
             <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 style={{
                     clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 0 0, 20% 0, 20% 35%, 0 35%, 0 0)',
                 }}
@@ -107,17 +122,17 @@ export const HoverExpandCardAlt = ({
                 </p>
 
                 {/* Arrow indicator */}
-                <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                    <svg className="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </div>
+                {onClick && (
+                    <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                        <ArrowRight className="w-5 h-5 text-brand-primary" />
+                    </div>
+                )}
             </div>
 
             {/* Bottom gradient line */}
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary to-brand-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-        </div>
+        </Component>
     );
 };
 
-export default HoverExpandCardAlt;
+export default HoverExpandCard;

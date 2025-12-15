@@ -1,10 +1,10 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { HoverExpandCardAlt } from './HoverExpandCard';
+import { HoverExpandCard } from './HoverExpandCard';
 
 const meta = {
     title: 'Cards/HoverExpandCard',
-    component: HoverExpandCardAlt,
+    component: HoverExpandCard,
     parameters: {
         layout: 'centered',
     },
@@ -15,7 +15,7 @@ const meta = {
             options: ['rocket', 'flask', 'enterprise'],
         },
     },
-} satisfies Meta<typeof HoverExpandCardAlt>;
+} satisfies Meta<typeof HoverExpandCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

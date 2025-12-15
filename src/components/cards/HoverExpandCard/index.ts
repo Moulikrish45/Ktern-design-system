@@ -1,2 +1,1 @@
-export { HoverExpandCardAlt as HoverExpandCard } from './HoverExpandCard';
-
+export { HoverExpandCard } from './HoverExpandCard';
