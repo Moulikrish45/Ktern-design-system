@@ -72,72 +72,37 @@ export const EnterpriseIcon: React.FC<IconProps> = ({ className = "w-6 h-6", siz
     </svg>
 );
 
+import {
+    Calendar as LucideCalendar,
+    ArrowRight as LucideArrowRight,
+    Users as LucideUsers,
+    CircleDot as LucideCircleDot
+} from 'lucide-react';
+
 /**
  * Calendar Icon - Represents scheduling, deadlines
  */
 export const CalendarIcon: React.FC<IconProps> = ({ className = "w-5 h-5", size }) => (
-    <svg
-        width={size || 20}
-        height={size || 20}
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-    >
-        <rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
-        <path d="M3 8h14" stroke="currentColor" strokeWidth="2" />
-        <path d="M7 2v4M13 2v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
+    <LucideCalendar className={className} size={size} />
 );
 
 /**
  * Arrow Right Icon - Represents navigation, forward action
  */
 export const ArrowRightIcon: React.FC<IconProps> = ({ className = "w-5 h-5", size }) => (
-    <svg
-        width={size || 20}
-        height={size || 20}
-        viewBox="0 0 24 24"
-        className={className}
-        fill="none"
-        stroke="currentColor"
-    >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-    </svg>
+    <LucideArrowRight className={className} size={size} />
 );
 
 /**
  * Users Icon - Represents team, collaboration
  */
 export const UsersIcon: React.FC<IconProps> = ({ className = "w-5 h-5", size }) => (
-    <svg
-        width={size || 20}
-        height={size || 20}
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-    >
-        <circle cx="7" cy="6" r="3" stroke="currentColor" strokeWidth="2" />
-        <path d="M2 18c0-2.761 2.239-5 5-5s5 2.239 5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="14" cy="5" r="2" stroke="currentColor" strokeWidth="2" />
-        <path d="M18 16c0-1.657-1.343-3-3-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
+    <LucideUsers className={className} size={size} />
 );
 
 /**
  * Status Badge Icon - Represents project status
  */
 export const StatusBadgeIcon: React.FC<IconProps> = ({ className = "w-5 h-5", size }) => (
-    <svg
-        width={size || 20}
-        height={size || 20}
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        className={className}
-        fill="none"
-    >
-        <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="2" />
-        <path d="M7 10l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    <LucideCircleDot className={className} size={size} />
 );

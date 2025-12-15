@@ -18,7 +18,7 @@ const buttonVariants = cva(
 
         // Hero: Exact matches HTML "Tern Hero Button" classes
         hero:
-          "group relative inline-flex items-center justify-center px-8 py-3.5 rounded-tl-[2rem] rounded-br-[2rem] bg-white font-bold text-lg text-[#d94e28] border-2 border-transparent bg-clip-padding before:absolute before:inset-0 before:-z-10 before:rounded-tl-[2rem] before:rounded-br-[2rem] before:bg-gradient-to-br before:from-[#9b1c2c] before:via-[#d94e28] before:to-[#ff8f00] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-primary focus-visible:outline-offset-0",
+          "group relative inline-flex items-center justify-center px-8 py-3.5 rounded-tl-[2rem] rounded-br-[2rem] bg-white font-bold text-lg text-brand-tertiary border-2 border-transparent bg-clip-padding before:absolute before:inset-0 before:-z-10 before:rounded-tl-[2rem] before:rounded-br-[2rem] before:bg-gradient-to-br before:from-brand-primarydark before:via-brand-tertiary before:to-brand-secondary focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-primary focus-visible:outline-offset-0",
 
         // Standard variants with proper styling
         outline: "rounded-xl border-2 border-brand-primary bg-transparent text-brand-primary font-semibold hover:bg-brand-primary hover:text-white hover:shadow-lg hover:shadow-brand-primary/30 transition-all duration-300 dark:border-brand-primarydark dark:text-brand-primarydark dark:hover:bg-brand-primarydark dark:hover:text-white dark:hover:shadow-brand-primarydark/30",
@@ -94,12 +94,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {...props}
         >
           {/* Gradient Border Background */}
-          <div className="absolute inset-0 rounded-tl-[2rem] rounded-br-[2rem] bg-gradient-to-br from-[#9b1c2c] via-[#d94e28] to-[#ff8f00] transition-transform duration-300 ease-out group-hover:scale-105"></div>
+          <div className="absolute inset-0 rounded-tl-[2rem] rounded-br-[2rem] bg-gradient-to-br from-brand-primarydark via-brand-tertiary to-brand-secondary transition-transform duration-300 ease-out group-hover:scale-105"></div>
 
           {/* Inner Content with White Background */}
           <div className="relative m-[2px] flex items-center justify-center gap-2 bg-white dark:bg-[#1a1a1a] px-8 py-3.5 rounded-tl-[calc(2rem-2px)] rounded-br-[calc(2rem-2px)] transition-all duration-300 ease-out group-hover:bg-[#f5f5f5] dark:group-hover:bg-[#2a2a2a]">
             {/* Gradient Text with Animation */}
-            <span className="text-lg font-bold bg-gradient-to-r from-[#a9203e] via-[#d94e28] to-[#ff8f00] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient-x">
+            <span className="text-lg font-bold bg-gradient-to-r from-brand-primary via-brand-tertiary to-brand-secondary bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient-x">
               {children}
             </span>
           </div>
@@ -116,7 +116,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {...props}
         >
           {/* Animated Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-primary via-[#d94e28] to-brand-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[length:200%_100%] animate-gradient-x"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-primary via-brand-tertiary to-brand-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[length:200%_100%] animate-gradient-x"></div>
 
           {/* Content */}
           <span className="relative flex items-center gap-2">
