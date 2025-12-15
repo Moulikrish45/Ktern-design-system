@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { HoverExpandCardAlt } from './HoverExpandCard';
 
 const meta = {
-    title: 'Organisms/Cards/Hover Expand Card',
+    title: 'Cards/HoverExpandCard',
     component: HoverExpandCardAlt,
     parameters: {
         layout: 'centered',

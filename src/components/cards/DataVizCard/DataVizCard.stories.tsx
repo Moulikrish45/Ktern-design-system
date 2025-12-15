@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DataVizCard } from '@/components/cards/DataVizCard';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { DataVizCard } from './DataVizCard';
 
 const meta = {
-    title: 'Organisms/Cards/Data Viz Card',
+    title: 'Cards/DataVizCard',
     component: DataVizCard,
     parameters: {
         layout: 'centered',
