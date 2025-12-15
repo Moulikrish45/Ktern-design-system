@@ -1,30 +1,21 @@
-import type { Metadata } from "next";
-import { Manrope, IBM_Plex_Serif, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
-const ibmPlex = IBM_Plex_Serif({ 
-  weight: ['400', '600'], 
-  subsets: ["latin"], 
-  variable: "--font-ibm-plex" 
-});
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
+import type { Metadata } from 'next'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "KTern Design System",
-  description: "Arctic Horizon Version 1.5.0",
-};
+    title: 'KTern Design System v1.5.0 - Arctic Horizon',
+    description: 'Official Development Handoff for KTern.AI Design System',
+}
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className={`${manrope.variable} ${ibmPlex.variable} ${jetbrains.variable} font-sans antialiased`}>
-        {children}
-      </body>
-    </html>
-  );
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    return (
+        <html lang="en" className="scroll-smooth light">
+            <body className="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark antialiased transition-colors duration-200 overflow-x-hidden">
+                {children}
+            </body>
+        </html>
+    )
 }

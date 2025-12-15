@@ -1,46 +1,223 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Serif:wght@400;500;600&family=Sora:wght@400;500;600&display=swap');
 
-@theme {
-  --color-brand-primary: #a9203e;
-  --color-brand-secondary: #ff8f00;
-  --color-brand-slate: #475569;
-  
-  --color-maroon-950: #320a14;
-  --color-maroon-900: #430d1a;
-  --color-maroon-700: #651426;
-  --color-maroon-600: #76172c;
-  --color-maroon-500: #a9203e;
-  --color-maroon-400: #c41e3a;
-  --color-maroon-100: #f3b0aa;
-  --color-maroon-50: #f6e6e3;
-  
-  --color-success: #3cd070;
-  --color-warning: #fada5e;
-  --color-danger: #c41e3a;
-  --color-info: #4166f5;
-  
-  --font-brand: var(--font-manrope), sans-serif;
-  --font-serif: var(--font-ibm-plex), serif;
-  --font-mono: var(--font-jetbrains), monospace;
-  
-  --shadow-primary: 0 8px 16px -4px rgba(169, 32, 62, 0.2);
-  --shadow-secondary: 0 8px 16px -4px rgba(255, 143, 0, 0.2);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Exact CSS Variables for Dev Handoff */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    --brand-primary: #a9203e;
+    --brand-secondary: #ff8f00;
+    --brand-gradient-light: linear-gradient(90deg, #a9203e 0%, #d94e28 50%, #ff8f00 100%);
+    --brand-gradient-dark: linear-gradient(90deg, #c41e3a 0%, #ffae42 50%, #d94e28 100%);
+    --ease-tern: cubic-bezier(0.2, 0, 0.38, 0.9);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Geist', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.font-brand {
+    font-family: 'Manrope', sans-serif;
+}
+
+.font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.font-viz {
+    font-family: 'Sora', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e5e5e5;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d4d4d4;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #44403c;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #57534e;
+}
+
+/* Sidebar & Navigation */
+#sidebar {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-open #sidebar {
+    transform: translateX(0);
+}
+
+.sidebar-closed #sidebar {
+    transform: translateX(-100%);
+}
+
+@media (min-width: 1024px) {
+    #sidebar {
+        transform: translateX(0) !important;
+    }
+}
+
+/* Active Link Indicator */
+.nav-link.active {
+    position: relative;
+    background: linear-gradient(90deg, rgba(169, 32, 62, 0.05), transparent);
+    color: #a9203e;
+    padding-left: 0.5rem;
+}
+
+.nav-link.active::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: linear-gradient(180deg, #a9203e, #ff8f00);
+    border-radius: 2px 0 0 2px;
+}
+
+.dark .nav-link.active {
+    background: linear-gradient(90deg, rgba(255, 143, 0, 0.05), transparent);
+    border-image: linear-gradient(180deg, #ff8f00, #a9203e) 1;
+    color: #ff8f00;
+}
+
+.dark .nav-link.active::before {
+    background: linear-gradient(180deg, #ff8f00, #a9203e);
+}
+
+/* Animated Text Gradient */
+.animated-gradient-text {
+    background: var(--brand-gradient-light);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient-x 3s linear infinite;
+}
+
+.dark .animated-gradient-text {
+    background: var(--brand-gradient-dark);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Grid Background Pattern */
+.hero-pattern {
+    background-image: radial-gradient(#a9203e 1px, transparent 1px), radial-gradient(#ff8f00 1px, transparent 1px);
+    background-position: 0 0, 25px 25px;
+    background-size: 50px 50px;
+    opacity: 0.03;
+}
+
+.dark .hero-pattern {
+    opacity: 0.08;
+}
+
+/* Clipboard Tooltip */
+.clipboard-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    padding: 4px 8px;
+    background: #100c08;
+    color: white;
+    font-size: 10px;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+}
+
+.group:hover .clipboard-tooltip {
+    opacity: 1;
+}
+
+/* ===== MOBILE ZOOM-TO-SCROLL EFFECT ===== */
+@media (max-width: 1023px) {
+
+    /* Initial state: scaled down and faded */
+    .zoom-scroll-section {
+        opacity: 0;
+        transform: scale(0.85) translateY(30px);
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+    }
+
+    /* Revealed state: full size and visible */
+    .zoom-scroll-section.in-view {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    /* Staggered delay for child elements within sections */
+    .zoom-scroll-item {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .zoom-scroll-section.in-view .zoom-scroll-item {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    /* Stagger animation for multiple items */
+    .zoom-scroll-section.in-view .zoom-scroll-item:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .zoom-scroll-section.in-view .zoom-scroll-item:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+
+    .zoom-scroll-section.in-view .zoom-scroll-item:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+
+    .zoom-scroll-section.in-view .zoom-scroll-item:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .zoom-scroll-section.in-view .zoom-scroll-item:nth-child(5) {
+        transition-delay: 0.5s;
+    }
+
+    .zoom-scroll-section.in-view .zoom-scroll-item:nth-child(6) {
+        transition-delay: 0.6s;
+    }
+}
+
+/* Desktop: No animation, everything visible */
+@media (min-width: 1024px) {
+
+    .zoom-scroll-section,
+    .zoom-scroll-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }

@@ -1,0 +1,363 @@
+{/* Foundation.mdx - Foundation Layer Documentation */}
+import { Meta, ColorPalette, ColorItem, Canvas } from '@storybook/blocks';
+import * as FoundationStories from '../Foundation.stories';
+
+<Meta of={FoundationStories} />
+
+<style>
+  {`
+    .section-header {
+      background: linear-gradient(90deg, #a9203e15, transparent);
+      border-left: 4px solid #a9203e;
+      padding: 16px 24px;
+      margin: 32px 0 24px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .section-header h2 {
+      margin: 0;
+      color: #a9203e;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .section-header p {
+      margin: 8px 0 0 0;
+      color: #666;
+      font-size: 14px;
+    }
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .color-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .color-swatch {
+      height: 80px;
+    }
+    .color-info {
+      padding: 16px;
+      background: white;
+    }
+    .color-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin: 0 0 4px 0;
+    }
+    .color-token {
+      font-size: 12px;
+      font-family: monospace;
+      color: #666;
+    }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .icon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      background: white;
+      transition: all 0.2s ease;
+    }
+    .icon-card:hover {
+      border-color: #ff8f00;
+      box-shadow: 0 4px 12px rgba(255, 143, 0, 0.15);
+      transform: translateY(-2px);
+    }
+    .icon-card svg {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 12px;
+    }
+    .icon-name {
+      font-size: 11px;
+      font-family: monospace;
+      color: #666;
+    }
+    .type-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+    }
+    .type-table th,
+    .type-table td {
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .type-table th {
+      background: #f8f8ff;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #666;
+    }
+    .type-sample {
+      color: #1a1a1a;
+    }
+    .gradient-showcase {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 24px 0;
+    }
+    .gradient-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .gradient-preview {
+      height: 100px;
+    }
+    .gradient-info {
+      padding: 16px;
+      background: white;
+    }
+    .gradient-info h4 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .gradient-info code {
+      display: block;
+      font-size: 11px;
+      background: #f5f5f5;
+      padding: 8px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  `}
+</style>
+
+# Foundation Layer
+
+The Foundation Layer establishes the core visual language of the KTern.AI Design System. It includes colors, typography, and iconography that form the basis for all higher-level components.
+
+---
+
+<div className="section-header">
+  <h2>🎨 Color System</h2>
+  <p>The KTern brand palette creates a distinctive, professional identity</p>
+</div>
+
+### Brand Palette
+
+The primary brand colors create instant recognition and emotional connection with users.
+
+<ColorPalette>
+  <ColorItem
+    title="brand.primary"
+    subtitle="Ruby Maroon — The core brand color used for primary actions and highlights"
+    colors={{ 'Primary': '#a9203e' }}
+  />
+  <ColorItem
+    title="brand.secondary"
+    subtitle="Arctic Amber — Accent color for energy, innovation, and call-to-action elements"
+    colors={{ 'Secondary': '#ff8f00' }}
+  />
+</ColorPalette>
+
+### Dark Mode Variants
+
+<ColorPalette>
+  <ColorItem
+    title="brand.primarydark"
+    subtitle="Ruby Maroon Dark — Primary color optimized for dark backgrounds"
+    colors={{ 'Primary Dark': '#c41e3a' }}
+  />
+  <ColorItem
+    title="brand.secondarydark"
+    subtitle="Arctic Amber Dark — Secondary color for dark mode"
+    colors={{ 'Secondary Dark': '#ffae42' }}
+  />
+  <ColorItem
+    title="brand.tertiary"
+    subtitle="Tertiary — Bridge color between maroon and amber"
+    colors={{ 'Tertiary': '#d94e28' }}
+  />
+</ColorPalette>
+
+### System Gradients
+
+<div className="gradient-showcase">
+  <div className="gradient-card">
+    <div className="gradient-preview" style={{ background: 'linear-gradient(90deg, #a9203e 0%, #d94e28 50%, #ff8f00 100%)' }}></div>
+    <div className="gradient-info">
+      <h4>Light Mode Gradient</h4>
+      <code>linear-gradient(90deg, #a9203e 0%, #d94e28 50%, #ff8f00 100%)</code>
+    </div>
+  </div>
+  <div className="gradient-card">
+    <div className="gradient-preview" style={{ background: 'linear-gradient(90deg, #c41e3a 0%, #ffae42 50%, #d94e28 100%)' }}></div>
+    <div className="gradient-info">
+      <h4>Dark Mode Gradient</h4>
+      <code>linear-gradient(90deg, #c41e3a 0%, #ffae42 50%, #d94e28 100%)</code>
+    </div>
+  </div>
+</div>
+
+### Semantic Colors
+
+<ColorPalette>
+  <ColorItem
+    title="success"
+    subtitle="Positive states, confirmations, completed actions"
+    colors={{ 'Success': '#3cd070' }}
+  />
+  <ColorItem
+    title="warning"
+    subtitle="Caution states, pending items, attention needed"
+    colors={{ 'Warning': '#ffc107' }}
+  />
+  <ColorItem
+    title="danger"
+    subtitle="Error states, destructive actions, critical alerts"
+    colors={{ 'Danger': '#c41e3a' }}
+  />
+  <ColorItem
+    title="info"
+    subtitle="Informational states, neutral highlights"
+    colors={{ 'Info': '#4166f5' }}
+  />
+</ColorPalette>
+
+### Extended Palettes
+
+#### Maroon Scale
+
+<ColorPalette>
+  <ColorItem
+    title="Maroon Full Scale"
+    subtitle="Complete maroon palette for subtle variations"
+    colors={{
+      '950': '#320a14',
+      '900': '#430d1a',
+      '700': '#651426',
+      '600': '#76172c',
+      '500': '#a9203e',
+      '400': '#c41e3a',
+      '100': '#f3b0aa',
+      '50': '#f6e6e3'
+    }}
+  />
+</ColorPalette>
+
+#### Orange Scale
+
+<ColorPalette>
+  <ColorItem
+    title="Orange Full Scale"
+    subtitle="Complete orange palette for subtle variations"
+    colors={{
+      '900': '#b36500',
+      '700': '#e68200',
+      '600': '#ff8f00',
+      '400': '#ffc266',
+      '100': '#fff2e5'
+    }}
+  />
+</ColorPalette>
+
+---
+
+<div className="section-header">
+  <h2>✏️ Typography</h2>
+  <p>A carefully curated type system for clarity and brand expression</p>
+</div>
+
+### Font Families
+
+| Role | Font | Weights | Use Case |
+|------|------|---------|----------|
+| **Headlines** | Manrope | 600, 700, 800 | Page titles, section headers, hero text |
+| **Body** | Geist | 400, 500 | Body text, UI labels, form fields |
+| **Code** | JetBrains Mono | 400 | Code snippets, tokens, technical values |
+| **Data** | Sora | 500, 600 | Metrics, charts, data visualization |
+| **Serif** | IBM Plex Serif | 400 | Long-form documentation, quotes |
+
+### Type Scale
+
+<table className="type-table">
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Spec</th>
+      <th>Font</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>text-6xl</code></td>
+      <td>4rem / 64px</td>
+      <td>Manrope 800</td>
+      <td style={{ fontFamily: 'Manrope, sans-serif', fontSize: '48px', fontWeight: 800 }} className="type-sample">Arctic</td>
+    </tr>
+    <tr>
+      <td><code>text-4xl</code></td>
+      <td>2.5rem / 40px</td>
+      <td>Manrope 700</td>
+      <td style={{ fontFamily: 'Manrope, sans-serif', fontSize: '32px', fontWeight: 700 }} className="type-sample">Dashboard</td>
+    </tr>
+    <tr>
+      <td><code>text-xl</code></td>
+      <td>1.25rem / 20px</td>
+      <td>Manrope 600</td>
+      <td style={{ fontFamily: 'Manrope, sans-serif', fontSize: '20px', fontWeight: 600 }} className="type-sample">Card Title</td>
+    </tr>
+    <tr>
+      <td><code>text-base</code></td>
+      <td>1rem / 16px</td>
+      <td>Geist 400</td>
+      <td style={{ fontSize: '16px' }} className="type-sample">Standard body text for UI readability.</td>
+    </tr>
+    <tr>
+      <td><code>text-code</code></td>
+      <td>0.875rem / 14px</td>
+      <td>JetBrains Mono</td>
+      <td style={{ fontFamily: 'monospace', fontSize: '14px', color: '#666' }} className="type-sample">const x = 42;</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<div className="section-header">
+  <h2>🔶 Iconography</h2>
+  <p>The "Amber Spark" design principle — neutral structure with #ff8f00 accent</p>
+</div>
+
+### Design Principles
+
+- **Grid:** 24×24px base size
+- **Stroke:** 2px consistent weight
+- **Corners:** 2px radius for soft feel
+- **Structure:** `currentColor` for adaptability
+- **Spark:** `#ff8f00` for the active element
+
+### Icon Categories
+
+#### Action & Intelligence
+Icons representing AI-powered actions and core functionality.
+
+#### Utility & System
+Icons for common system operations and navigation.
+
+#### Governance & Brand
+Icons representing enterprise features and brand identity.
+
+---
+
+## Live Component
+
+<Canvas of={FoundationStories.Default} />
