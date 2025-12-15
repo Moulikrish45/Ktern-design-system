@@ -13,32 +13,43 @@ const preview: Preview = {
             },
         },
         backgrounds: {
-            options: {
-                light: { name: 'light', value: '#f8f8ff' },
-                dark: { name: 'dark', value: '#100c08' }
-            }
+            default: 'light',
+            values: [
+                { name: 'Light', value: '#f8f8ff' },
+                { name: 'Dark', value: '#100c08' }
+            ],
         },
         layout: 'padded',
         options: {
             storySort: {
-                order: ['Foundation', 'Token', 'Components', 'Patterns'],
+                order: ['Design System', 'Foundation', 'Atoms', 'Components', 'Patterns'],
             },
         },
     },
 
     decorators: [
-        (Story) => (
-            <div className="font-sans antialiased">
-                <Story />
-            </div>
-        ),
-    ],
+        (Story, context) => {
+            // Simple dark mode detection from background value
+            const isDark = context.globals.backgrounds?.value === '#100c08';
 
-    initialGlobals: {
-        backgrounds: {
-            value: 'light'
-        }
-    }
+            // Apply dark class to html element
+            React.useEffect(() => {
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            }, [isDark]);
+
+            return (
+                <div className={isDark ? 'dark' : ''}>
+                    <div className="font-sans antialiased bg-background text-foreground p-6">
+                        <Story />
+                    </div>
+                </div>
+            );
+        },
+    ],
 };
 
 export default preview;

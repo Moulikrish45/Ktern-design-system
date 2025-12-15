@@ -4,13 +4,113 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Exact CSS Variables for Dev Handoff */
-:root {
-    --brand-primary: #a9203e;
-    --brand-secondary: #ff8f00;
-    --brand-gradient-light: linear-gradient(90deg, #a9203e 0%, #d94e28 50%, #ff8f00 100%);
-    --brand-gradient-dark: linear-gradient(90deg, #c41e3a 0%, #ffae42 50%, #d94e28 100%);
-    --ease-tern: cubic-bezier(0.2, 0, 0.38, 0.9);
+@layer base {
+    :root {
+        /* Brand Primitive Colors (RGB for opacity support) */
+        --brand-primary-rgb: 169 32 62;
+        --brand-secondary-rgb: 255 143 0;
+        --brand-tertiary-rgb: 217 78 40;
+
+        /* Legacy Hex Variables (for compatibility) */
+        --brand-primary: #a9203e;
+        --brand-secondary: #ff8f00;
+        --brand-gradient-light: linear-gradient(90deg, #a9203e 0%, #d94e28 50%, #ff8f00 100%);
+        --brand-gradient-dark: linear-gradient(90deg, #c41e3a 0%, #ffae42 50%, #d94e28 100%);
+        --ease-tern: cubic-bezier(0.2, 0, 0.38, 0.9);
+
+        /* Semantic Colors - Light Mode (RGB for Tailwind HSL conversion) */
+        --background: 248 248 255;
+        /* Ghost White #f8f8ff */
+        --foreground: 16 12 8;
+        /* Premium Black #100c08 */
+
+        --card: 255 255 255;
+        /* Pure White */
+        --card-foreground: 16 12 8;
+
+        --popover: 255 255 255;
+        --popover-foreground: 16 12 8;
+
+        --primary: 169 32 62;
+        /* Brand Primary */
+        --primary-foreground: 255 255 255;
+
+        --secondary: 255 143 0;
+        /* Brand Secondary */
+        --secondary-foreground: 255 255 255;
+
+        --muted: 241 243 245;
+        /* Neutral 100 */
+        --muted-foreground: 108 117 125;
+        /* Neutral 600 */
+
+        --accent: 241 243 245;
+        --accent-foreground: 16 12 8;
+
+        --destructive: 196 30 58;
+        /* Danger */
+        --destructive-foreground: 255 255 255;
+
+        --border: 229 229 229;
+        /* Border Light */
+        --input: 229 229 229;
+        --ring: 169 32 62;
+        /* Brand Primary */
+
+        --success: 60 208 112;
+        /* Emerald Teal */
+        --warning: 255 193 7;
+        /* Material Amber */
+        --info: 65 102 245;
+        /* Aurora Blue */
+
+        --radius: 0.5rem;
+        /* Default border radius */
+    }
+
+    .dark {
+        /* Semantic Colors - Dark Mode */
+        --background: 16 12 8;
+        /* Premium Black #100c08 */
+        --foreground: 245 245 245;
+        /* Almost White #f5f5f5 */
+
+        --card: 28 25 23;
+        /* Surface Dark #1c1917 */
+        --card-foreground: 245 245 245;
+
+        --popover: 28 25 23;
+        --popover-foreground: 245 245 245;
+
+        --primary: 169 32 62;
+        /* Brand Primary (same) */
+        --primary-foreground: 255 255 255;
+
+        --secondary: 255 143 0;
+        /* Brand Secondary (same) */
+        --secondary-foreground: 255 255 255;
+
+        --muted: 52 58 64;
+        /* Neutral 800 */
+        --muted-foreground: 173 181 189;
+        /* Neutral 500 */
+
+        --accent: 52 58 64;
+        --accent-foreground: 245 245 245;
+
+        --destructive: 196 30 58;
+        --destructive-foreground: 255 255 255;
+
+        --border: 68 64 60;
+        /* Border Dark */
+        --input: 68 64 60;
+        --ring: 255 143 0;
+        /* Brand Secondary for dark mode */
+
+        --success: 60 208 112;
+        --warning: 255 193 7;
+        --info: 65 102 245;
+    }
 }
 
 body {

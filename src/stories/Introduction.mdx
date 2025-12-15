@@ -1,0 +1,192 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# Welcome to KTern Design System
+
+A comprehensive, production-ready design system built for SAP transformation projects.
+
+## 🎯 Overview
+
+The KTern Design System provides a complete set of reusable UI components, design tokens, and patterns specifically crafted for enterprise SAP applications. Built with modern technologies and following Atomic Design principles, this system ensures consistency, accessibility, and scalability across all KTern products.
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+npm install @ktern/design-system
+```
+
+### Basic Usage
+
+```tsx
+import { Button, Card, CardHeader, CardTitle } from '@ktern/design-system';
+
+function MyComponent() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Project Dashboard</CardTitle>
+      </CardHeader>
+      <Button variant="primary">Get Started</Button>
+    </Card>
+  );
+}
+```
+
+## 🛠️ Tech Stack
+
+Our design system is built with industry-leading technologies:
+
+- **React** - Component framework
+- **TypeScript** - Type safety and better DX
+- **Tailwind CSS** - Utility-first styling with custom design tokens
+- **Storybook** - Component development and documentation
+- **Vite** - Fast build tooling
+- **Next.js** - Framework for application integration
+
+### Design Tokens
+
+All visual design decisions are centralized in our token system:
+- Colors (Brand, Semantic, Neutral palettes)
+- Typography (Geist, Manrope, JetBrains Mono)
+- Spacing, Shadows, Border Radius
+- Animation timing and easings
+
+## 📚 Architecture
+
+We follow **Atomic Design** principles for clear component hierarchy:
+
+### Foundation
+Design tokens, color palettes, typography scales, spacing, shadows, and motion guidelines.
+
+### Atoms
+Smallest building blocks like Button, Input, Checkbox, and Select.
+
+### Molecules  
+Simple composable components like Card primitives, Navigation elements, and Feedback components.
+
+### Organisms
+Complex components like Project Cards, Data Visualization charts, and Dialog Modals.
+
+## 🎨 Key Features
+
+### ✨ Composition Pattern
+Build custom layouts using composable primitives:
+
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Custom Card</CardTitle>
+    <CardDescription>Flexible composition</CardDescription>
+  </CardHeader>
+  <CardContent>{/* Your content */}</CardContent>
+  <CardFooter>{/* Actions */}</CardFooter>
+</Card>
+```
+
+### 🌗 Dark Mode Support
+All components automatically adapt to light and dark themes using CSS variables.
+
+### ♿ Accessibility First
+- Semantic HTML structure
+- Keyboard navigation support
+- ARIA labels and roles
+- Focus management
+- Screen reader friendly
+
+### 🎯 Type Safety
+Full TypeScript support with comprehensive prop types and autocomplete.
+
+## 📖 Documentation
+
+### Component Categories
+
+- **Atoms/Button** - Primary, Secondary, Hero, Outline, Ghost, Destructive, Link variants
+- **Atoms/Inputs** - Text Input, Checkbox, Select, Textarea
+- **Molecules/Card (Primitive)** - Composable card components
+- **Molecules/Navigation** - Breadcrumbs, Pagination, Tabs
+- **Molecules/Feedback** - Toast notifications
+- **Organisms/Cards** - Project, Stat, Data Viz cards
+- **Organisms/Data Viz** - Charts and visualizations
+- **Organisms/Overlays** - Modals and dialogs
+
+## 🔗 Key Resources
+
+### Design Resources
+- **Figma Library** - [Design Files](https://figma.com/ktern-design-system)
+- **Brand Guidelines** - Color palettes, typography, iconography
+
+### Development Resources
+- **GitHub Repository** - [Source Code](https://github.com/ktern/design-system)
+- **NPM Package** - [@ktern/design-system](https://npmjs.com/package/@ktern/design-system)
+- **Changelog** - Version history and updates
+
+### Getting Help
+- **Component Documentation** - Check the "Docs" tab for each component
+- **Usage Examples** - Browse stories for implementation patterns
+- **Issue Tracker** - Report bugs or request features
+
+## 🏗️ Development
+
+### Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run Storybook
+npm run storybook
+
+# Build for production
+npm run build
+
+# Build Storybook
+npm run build-storybook
+```
+
+### Project Structure
+
+```
+src/
+├── components/
+│   ├── atoms/          # Smallest building blocks
+│   ├── molecules/      # Simple composables
+│   └── organisms/      # Complex components
+├── styles/
+│   └── tokens.ts       # Design token source of truth
+├── lib/
+│   └── utils.ts        # Utility functions
+└── stories/            # Foundation documentation
+```
+
+## 📋 Best Practices
+
+### Do's ✅
+- Use semantic component variants
+- Leverage composition patterns
+- Follow TypeScript types
+- Test components in Storybook
+- Use design tokens from the system
+
+### Don'ts ❌
+- Don't override component styles arbitrarily
+- Don't skip accessibility features
+- Don't bypass the type system
+- Don't use hardcoded colors/spacing
+- Don't create div buttons (use proper semantic HTML)
+
+## 🎓 Learn More
+
+Explore components in the sidebar to see:
+- Interactive examples
+- Props documentation
+- Usage guidelines
+- Accessibility features
+- Code snippets
+
+---
+
+**Version**: 1.5.0  
+**Built with** ❤️ **by the KTern Design Team**

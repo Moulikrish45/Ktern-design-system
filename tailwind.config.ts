@@ -1,7 +1,8 @@
 import type { Config } from 'tailwindcss'
+import { tokens } from './src/styles/tokens'
 
 const config: Config = {
-    darkMode: 'class',
+    darkMode: ['class'],
     content: [
         './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
         './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -11,78 +12,86 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                brand: {
-                    primary: '#a9203e',      // Ruby Maroon
-                    secondary: '#ff8f00',
-                    primarydark: '#c41e3a',
-                    secondarydark: '#ffae42',
-                    tertiary: '#d94e28',
-                    slate: '#475569',
-                },
-                background: {
-                    light: '#f8f8ff',        // Ghost White
-                    dark: '#100c08',         // Premium Black
-                },
-                surface: {
-                    light: '#ffffff',
-                    dark: '#1c1917',
-                },
-                text: {
-                    main: {
-                        light: '#100c08',
-                        dark: '#f5f5f5',
-                    },
-                    muted: {
-                        light: '#666563',    // Arctic Graphite
-                        dark: '#a8a29e',
-                    }
-                },
-                border: {
-                    light: '#e5e5e5',
-                    dark: '#44403c',
-                },
-                success: '#3cd070',         // Emerald Teal
-                warning: '#ffc107',         // Material UI Amber
-                danger: '#c41e3a',
-                info: '#4166f5',            // Aurora Blue
+                // Semantic colors using CSS variables
+                border: 'rgb(var(--border) / <alpha-value>)',
+                input: 'rgb(var(--input) / <alpha-value>)',
+                ring: 'rgb(var(--ring) / <alpha-value>)',
+                background: 'rgb(var(--background) / <alpha-value>)',
+                foreground: 'rgb(var(--foreground) / <alpha-value>)',
 
-                // Extended Maroon palette
-                maroon: {
-                    950: '#320a14',
-                    900: '#430d1a',
-                    700: '#651426',
-                    600: '#76172c',
-                    500: '#a9203e',
-                    400: '#c41e3a',
-                    300: '#d85a6a',
-                    100: '#f3b0aa',
-                    50: '#f6e6e3',
+                primary: {
+                    DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
+                    foreground: 'rgb(var(--primary-foreground) / <alpha-value>)',
+                },
+                secondary: {
+                    DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',
+                    foreground: 'rgb(var(--secondary-foreground) / <alpha-value>)',
+                },
+                destructive: {
+                    DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
+                    foreground: 'rgb(var(--destructive-foreground) / <alpha-value>)',
+                },
+                muted: {
+                    DEFAULT: 'rgb(var(--muted) / <alpha-value>)',
+                    foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
+                },
+                accent: {
+                    DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+                    foreground: 'rgb(var(--accent-foreground) / <alpha-value>)',
+                },
+                popover: {
+                    DEFAULT: 'rgb(var(--popover) / <alpha-value>)',
+                    foreground: 'rgb(var(--popover-foreground) / <alpha-value>)',
+                },
+                card: {
+                    DEFAULT: 'rgb(var(--card) / <alpha-value>)',
+                    foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
                 },
 
-                // Extended Orange palette
-                orange: {
-                    900: '#b36500',
-                    700: '#e68200',
-                    600: '#ff8f00',
-                    400: '#ffc266',
-                    100: '#fff2e5',
-                },
+                // Direct token colors (for components that use explicit colors)
+                brand: tokens.colors.brand,
+                maroon: tokens.colors.maroon,
+                orange: tokens.colors.orange,
+                neutral: tokens.colors.neutral,
+
+                // Semantic helpers using CSS variables
+                success: 'rgb(var(--success) / <alpha-value>)',
+                warning: 'rgb(var(--warning) / <alpha-value>)',
+                danger: 'rgb(var(--destructive) / <alpha-value>)',
+                info: 'rgb(var(--info) / <alpha-value>)',
+
+                // Legacy colors for backward compatibility
+                'background-light': tokens.colors.background.light,
+                'background-dark': tokens.colors.background.dark,
+                'surface-light': tokens.colors.surface.light,
+                'surface-dark': tokens.colors.surface.dark,
+                'text-main-light': tokens.colors.text.main.light,
+                'text-main-dark': tokens.colors.text.main.dark,
+                'text-muted-light': tokens.colors.text.muted.light,
+                'text-muted-dark': tokens.colors.text.muted.dark,
+                'border-light': tokens.colors.border.light,
+                'border-dark': tokens.colors.border.dark,
             },
             fontFamily: {
-                sans: ['Geist', 'sans-serif'],
-                brand: ['Manrope', 'sans-serif'],
-                serif: ['IBM Plex Serif', 'serif'],
-                mono: ['JetBrains Mono', 'monospace'],
-                viz: ['Sora', 'sans-serif'],
+                sans: [...tokens.fonts.sans],
+                brand: [...tokens.fonts.brand],
+                serif: [...tokens.fonts.serif],
+                mono: [...tokens.fonts.mono],
+                viz: [...tokens.fonts.viz],
             },
             boxShadow: {
-                'primary': '0 8px 16px -4px rgba(169, 32, 62, 0.2)',
-                'secondary': '0 8px 16px -4px rgba(255, 143, 0, 0.2)',
-                'sm': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-                'md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-                'lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-                'xl': '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
-                '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+                primary: tokens.shadows.primary,
+                secondary: tokens.shadows.secondary,
+                sm: tokens.shadows.sm,
+                md: tokens.shadows.md,
+                lg: tokens.shadows.lg,
+                xl: tokens.shadows.xl,
+                '2xl': tokens.shadows['2xl'],
+            },
+            borderRadius: {
+                lg: 'var(--radius)',
+                md: 'calc(var(--radius) - 2px)',
+                sm: 'calc(var(--radius) - 4px)',
             },
             animation: {
                 'fade-in-up': 'fade-in-up 300ms ease-out',

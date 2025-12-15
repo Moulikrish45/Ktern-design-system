@@ -1,3 +1,2 @@
-export { TernHeroButton } from './TernHeroButton';
-export { PrimaryButton } from './PrimaryButton';
-export { SecondaryButton } from './SecondaryButton';
+export { Button, buttonVariants } from './Button';
+export type { ButtonProps } from './Button';

@@ -1,3 +1,3 @@
-export { Select } from './Select';
-export { Textarea } from './Textarea';
-export { Checkbox } from './Checkbox';
+export { Select } from './Select/index';
+export { Textarea } from './Textarea/index';
+export { Checkbox } from './Checkbox/index';

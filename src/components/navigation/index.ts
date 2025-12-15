@@ -1,3 +1,3 @@
-export { UnderlineTabs } from './UnderlineTabs';
-export { Breadcrumbs } from './Breadcrumbs';
-export { Pagination } from './Pagination';
+export { UnderlineTabs } from './UnderlineTabs/index';
+export { Breadcrumbs } from './Breadcrumbs/index';
+export { Pagination } from './Pagination/index';

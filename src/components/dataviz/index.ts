@@ -1,3 +1,3 @@
-export { DonutChart } from './DonutChart';
-export { BarChart } from './BarChart';
-export { SparklineChart } from './SparklineChart';
+export { DonutChart } from './DonutChart/index';
+export { BarChart } from './BarChart/index';
+export { SparklineChart } from './SparklineChart/index';

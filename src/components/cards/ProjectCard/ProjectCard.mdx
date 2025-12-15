@@ -1,0 +1,360 @@
+import { Meta } from '@storybook/blocks';
+import * as ProjectCardStories from './ProjectCard.stories';
+
+<Meta of={ProjectCardStories} />
+
+# Project Card - Usage Guidelines
+
+A specialized card component for displaying SAP project information with status, metadata, and actions.
+
+## When to Use ✅
+
+Use the Project Card component for:
+
+- **Project Summaries** - Display overview of SAP transformation projects
+- **Dashboard Views** - Show multiple projects in a grid or list layout
+- **Project Selection** - Allow users to browse and select projects
+- **Status Tracking** - Visualize project status with color-coded badges
+- **Quick Actions** - Provide immediate access to project details
+
+### Perfect For:
+- SAP S/4HANA migration projects
+- Implementation project cards
+- Transformation initiative displays
+- Project portfolio views
+
+## When NOT to Use ❌
+
+Don't use Project Card for:
+
+- **Simple Lists** - Use a Table component instead for tabular data
+- **Detailed Project Pages** - Use full page layouts with sections
+- **Non-Project Content** - Use regular Card primitive or other specialized cards
+- **Small Inline Items** - Too heavy for inline displays
+- **Forms** - Not designed for input collection
+
+### Use Alternatives Instead:
+- **Table** - For data-heavy project lists with sorting/filtering
+- **Stat Card** - For displaying single metrics or KPIs
+- **Card (Primitive)** - For custom content that doesn't fit project structure
+
+## Component Structure
+
+```tsx
+<ProjectCard
+  title="Project Name"           // Required
+  description="Description"      // Required
+  status="active | planning | completed"  // Required
+  deadline="Dec 31, 2024"       // Optional
+  teamSize={12}                 // Optional
+  onClick={() => {}}            // Optional - makes whole card clickable
+  onAction={() => {}}           // Optional - adds action button
+  actionLabel="View Details"    // Optional - button label
+/>
+```
+
+## Usage Patterns
+
+### 1. Clickable Card (Recommended for Navigation)
+
+Use when the entire card should navigate somewhere:
+
+```tsx
+<ProjectCard
+  title="SAP S/4HANA Migration"
+  description="Complete migration from ECC to S/4HANA"
+  status="active"
+  deadline="Dec 31, 2024"
+  teamSize={12}
+  onClick={() => navigateTo('/projects/123')}
+/>
+```
+
+**Why?** ✅
+- Whole card is a semantic `<button>`
+- Keyboard accessible (Tab + Enter)
+- Clear click target for users
+- ARIA-friendly
+
+### 2. Action Button (Recommended for Actions)
+
+Use when you need a specific action button:
+
+```tsx
+<ProjectCard
+  title="Digital Transformation Initiative"
+  description="Organization-wide digital transformation"
+  status="planning"
+  deadline="Q2 2025"
+  teamSize={8}
+  onAction={() => showDetails()}
+  actionLabel="Review Plan"
+/>
+```
+
+**Why?** ✅
+- Clear action button in footer
+- Card itself is not clickable (less confusion)
+- Good for multiple cards with different actions
+
+### 3. Mixed (NOT Recommended)
+
+Avoid having both `onClick` and `onAction`:
+
+```tsx
+// ❌ DON'T DO THIS
+<ProjectCard
+  onClick={() => navigate('/project')}
+  onAction={() => showModal()}
+  // Confusing: what happens when you click the card vs. button?
+/>
+```
+
+## Status Guidelines
+
+### Active Projects
+
+```tsx
+<ProjectCard
+  status="active"
+  // Shows green badge with "Active" label
+  // Use for: Currently running projects
+/>
+```
+
+**Best For:**
+- Projects in execution phase
+- Ongoing implementations
+- Current sprints
+
+### Planning Projects
+
+```tsx
+<ProjectCard
+  status="planning"
+  // Shows amber/warning badge with "Planning" label
+  // Use for: Pre-kick-off projects
+/>
+```
+
+**Best For:**
+- Requirements gathering phase
+- Design and planning stage
+- Projects not yet started
+
+### Completed Projects
+
+```tsx
+<ProjectCard
+  status="completed"
+  // Shows maroon badge with "Completed" label
+  // Use for: Successfully finished projects
+/>
+```
+
+**Best For:**
+- Closed projects
+- Successfully delivered implementations
+- Archive/reference projects
+
+## Best Practices
+
+### Do's ✅
+
+1. **Use Descriptive Titles**
+   ```tsx
+   // ✅ GOOD
+   title="SAP S/4HANA Migration - Global Rollout"
+   
+   // ❌ BAD
+   title="Project 1"
+   ```
+
+2. **Provide Context in Description**
+   ```tsx
+   // ✅ GOOD
+   description="Complete migration from ECC to S/4HANA with zero downtime strategy and comprehensive testing phase"
+   
+   // ❌ BAD
+   description="Migration project"
+   ```
+
+3. **Include Relevant Metadata**
+   ```tsx
+   // ✅ GOOD - Shows timeline and team info
+   deadline="Dec 31, 2024"
+   teamSize={12}
+   
+   // ❌ BAD - Missing context
+   // (no deadline or team info)
+   ```
+
+4. **Use Appropriate Status**
+   ```tsx
+   // ✅ GOOD - Status matches reality
+   status="active"  // for running projects
+   
+   // ❌ BAD - Misleading status
+   status="completed"  // for projects still in progress
+   ```
+
+5. **Provide Clear Action Labels**
+   ```tsx
+   // ✅ GOOD - Specific action
+   actionLabel="View Project Details"
+   
+   // ❌ BAD - Generic label
+   actionLabel="Click Here"
+   ```
+
+### Don'ts ❌
+
+1. **Don't Use for Non-Projects**
+   ```tsx
+   // ❌ WRONG
+   <ProjectCard title="User Profile" description="..." />
+   // Use a different card type
+   ```
+
+2. **Don't Overload with Actions**
+   ```tsx
+   // ❌ WRONG
+   <ProjectCard
+     onClick={action1}
+     onAction={action2}
+     // Too many click targets - confusing!
+   />
+   ```
+
+3. **Don't Skip Required Props**
+   ```tsx
+   // ❌ WRONG - Missing required props
+   <ProjectCard title="Project" />
+   // Must include: title, description, status
+   ```
+
+4. **Don't Use Long Descriptions**
+   ```tsx
+   // ❌ WRONG - Too long, gets truncated
+   description="This is a very long description that goes on and on and provides way too much detail for a card summary view and should really be on the detail page instead"
+   
+   // ✅ GOOD - Concise summary
+   description="Complete migration from ECC to S/4HANA with zero downtime strategy"
+   ```
+
+5. **Don't Nest Inside Other Cards**
+   ```tsx
+   // ❌ WRONG
+   <Card>
+     <ProjectCard {...props} />
+   </Card>
+   ```
+
+## Layout Patterns
+
+### Grid Layout (Recommended)
+
+```tsx
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <ProjectCard {...project1} />
+  <ProjectCard {...project2} />
+  <ProjectCard {...project3} />
+</div>
+```
+
+### List Layout
+
+```tsx
+<div className="flex flex-col gap-4 max-w-2xl">
+  <ProjectCard {...project1} />
+  <ProjectCard {...project2} />
+</div>
+```
+
+## Accessibility
+
+The ProjectCard component follows WCAG accessibility guidelines:
+
+### Keyboard Navigation
+
+- ✅ **Tab** - Navigate to card (if clickable) or button
+- ✅ **Enter / Space** - Activate card or button
+- ✅ **Focus visible** - Clear focus ring shown
+
+### Screen Readers
+
+- ✅ **Semantic HTML** - Uses `<button>` for clickable areas
+- ✅ **Heading structure** - Title is proper `<h3>`
+- ✅ **ARIA labels** - Status badges are announced
+- ✅ **Alternative text** - Icons have descriptive labels
+
+### Focus Management
+
+```tsx
+// ✅ GOOD - Semantic button
+// Screen reader announces: "Button: SAP S/4HANA Migration, Active, Deadline Dec 31 2024"
+<ProjectCard onClick={...} />
+
+// ❌ BAD - Div with onClick
+// Screen reader might not announce as clickable
+<div onClick={...}>...</div>
+```
+
+## Dark Mode
+
+Project Card automatically adapts to dark mode:
+
+- Background changes to dark surface
+- Text adjusts to light colors
+- Status badges maintain contrast
+- Hover effects remain visible
+
+No code changes needed! 🌗
+
+## Real-World Example
+
+```tsx
+function ProjectDashboard() {
+  const projects = [
+    {
+      id: 1,
+      title: "SAP S/4HANA Migration",
+      description: "Complete migration from ECC to S/4HANA with zero downtime",
+      status: "active" as const,
+      deadline: "Dec 31, 2024",
+      teamSize: 12,
+    },
+    {
+      id: 2,
+      title: "Digital Transformation Initiative",
+      description: "Organization-wide digital transformation with cloud migration",
+      status: "planning" as const,
+      deadline: "Q2 2025",
+      teamSize: 8,
+    },
+  ];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {projects.map((project) => (
+        <ProjectCard
+          key={project.id}
+          {...project}
+          onClick={() => navigate(`/projects/${project.id}`)}
+        />
+      ))}
+    </div>
+  );
+}
+```
+
+## Related Components
+
+- **Card (Primitive)** - Build custom layouts
+- **Stat Card** - Display single metrics
+- **Overall Status Card** - Show completion percentages
+- **Data Viz Card** - Cards with charts
+
+---
+
+**Questions?** Check the props documentation below or explore the interactive examples in Storybook.

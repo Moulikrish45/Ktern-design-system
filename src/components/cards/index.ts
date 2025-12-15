@@ -1,6 +1,6 @@
-export { ProjectCard } from './ProjectCard';
-export { HoverExpandCardAlt } from './HoverExpandCardAlt';
-export { StatCard } from './StatCard';
-export { OverallStatusCard } from './OverallStatusCard';
-export { DataVizCard } from './DataVizCard';
-export { TransformationVelocityCard } from './TransformationVelocityCard';
+export { ProjectCard } from './ProjectCard/index';
+export { HoverExpandCard } from './HoverExpandCard/index';
+export { StatCard } from './StatCard/index';
+export { OverallStatusCard } from './OverallStatusCard/index';
+export { DataVizCard } from './DataVizCard/index';
+export { TransformationVelocityCard } from './TransformationVelocityCard/index';

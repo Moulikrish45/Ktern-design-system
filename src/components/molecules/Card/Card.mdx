@@ -1,0 +1,261 @@
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+# Card (Primitive)
+
+A foundational composable card component for grouping related content.
+
+## When to Use
+
+Use the Card primitive when you need to:
+- ✅ Group related information visually
+- ✅ Create custom card layouts with flexible composition
+- ✅ Build complex components (like ProjectCard, StatCard)
+- ✅ Display content in a contained, elevated surface
+
+## When NOT to Use
+
+- ❌ For simple lists (use a `<ul>` or Table instead)
+- ❌ For full-page layouts (use layout components)
+- ❌ For inline content (cards are block-level components)
+
+## Structure
+
+The Card component follows a **composition pattern** with these sub-components:
+
+### Card Components
+
+| Component | Purpose | Required |
+|-----------|---------|----------|
+| `Card` | Container with border, background, and shadow | Yes |
+| `CardHeader` | Top section for title and description | Optional |
+| `CardTitle` | Semantic `<h3>` heading | Optional |
+| `CardDescription` | Supporting text below title | Optional |
+| `CardContent` | Main content area | Optional |
+| `CardFooter` | Bottom section for actions | Optional |
+
+## Basic Usage
+
+### Simple Card
+
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components';
+
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>
+      A brief description of what this card contains.
+    </CardDescription>
+  </CardHeader>
+</Card>
+```
+
+### Full Structure
+
+```tsx
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components';
+import { Button } from '@/components';
+
+<Card>
+  <CardHeader>
+    <CardTitle>Project Dashboard</CardTitle>
+    <CardDescription>Overview of active projects</CardDescription>
+  </CardHeader>
+  
+  <CardContent>
+    <p>Your main content goes here.</p>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+    </ul>
+  </CardContent>
+  
+  <CardFooter>
+    <Button variant="primary">View All</Button>
+  </CardFooter>
+</Card>
+```
+
+## Composition Examples
+
+### Card with Custom Content
+
+```tsx
+<Card className="w-[380px]">
+  <CardHeader>
+    <CardTitle>Statistics</CardTitle>
+    <CardDescription>Key metrics overview</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <div className="space-y-4">
+      <div className="flex justify-between">
+        <span>Completion</span>
+        <span className="font-semibold">78%</span>
+      </div>
+      <div className="w-full bg-muted rounded-full h-2">
+        <div className="bg-brand-primary h-2 rounded-full" style={{ width: '78%' }} />
+      </div>
+    </div>
+  </CardContent>
+</Card>
+```
+
+### Interactive Card
+
+Add hover effects and make the card clickable:
+
+```tsx
+<Card className="hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer">
+  <CardHeader>
+    <CardTitle>Clickable Card</CardTitle>
+    <CardDescription>Click anywhere on this card</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>This card has hover effects and is interactive.</p>
+  </CardContent>
+</Card>
+```
+
+### Card as a Button
+
+For fully clickable cards, wrap in a button:
+
+```tsx
+<button type="button" onClick={handleClick} className="text-left w-full">
+  <Card>
+    <CardHeader>
+      <CardTitle>Action Card</CardTitle>
+    </CardHeader>
+  </Card>
+</button>
+```
+
+## Customization
+
+### Adding Custom Styles
+
+All card components accept `className` prop:
+
+```tsx
+<Card className="border-brand-primary bg-gradient-to-br from-white to-gray-50">
+  <CardHeader className="pb-2">
+    <CardTitle className="text-brand-primary">Custom Styled</CardTitle>
+  </CardHeader>
+</Card>
+```
+
+### Dark Mode
+
+Cards automatically adapt to dark mode using CSS variables:
+
+```tsx
+<Card>
+  {/* 
+    Light mode: white background, dark text
+    Dark mode: dark background, light text
+    No code changes needed!
+  */}
+  <CardHeader>
+    <CardTitle>Auto Dark Mode</CardTitle>
+  </CardHeader>
+</Card>
+```
+
+## Accessibility
+
+The Card components follow accessibility best practices:
+
+- ✅ **Semantic HTML**: `CardTitle` uses `<h3>` tag
+- ✅ **ARIA-friendly**: Proper heading hierarchy
+- ✅ **Keyboard accessible**: When wrapped in `<button>` or `<a>`
+- ✅ **Focus management**: Focus states included
+
+### For Clickable Cards
+
+```tsx
+// ✅ GOOD: Semantic button
+<button type="button" onClick={handleClick}>
+  <Card>...</Card>
+</button>
+
+// ❌ BAD: Div with onClick
+<div onClick={handleClick}>
+  <Card>...</Card>
+</div>
+```
+
+## Building Complex Cards
+
+Use Card primitives to build specific card types:
+
+### Project Card Example
+
+```tsx
+<Card className="group hover:shadow-xl transition-all">
+  <CardHeader>
+    <div className="flex items-start justify-between">
+      <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center">
+        <RocketIcon className="w-6 h-6 text-brand-primary" />
+      </div>
+      <span className="px-3 py-1 rounded-full text-xs bg-success/10 text-success">
+        Active
+      </span>
+    </div>
+    <CardTitle className="mt-4">SAP S/4HANA Migration</CardTitle>
+    <CardDescription>
+      Complete migration with zero downtime strategy
+    </CardDescription>
+  </CardHeader>
+  
+  <CardContent>
+    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+      <span>📅 Dec 31, 2024</span>
+      <span>👥 12 members</span>
+    </div>
+  </CardContent>
+  
+  <CardFooter>
+    <Button variant="ghost" className="w-full">View Details</Button>
+  </CardFooter>
+</Card>
+```
+
+## Best Practices
+
+### Do's ✅
+
+- Use `CardHeader` for titles and descriptions
+- Use `CardContent` for the main content area
+- Use `CardFooter` for action buttons
+- Add custom classes for specific styling needs
+- Compose cards to build custom layouts
+- Use semantic HTML inside cards
+
+### Don'ts ❌
+
+- Don't nest cards inside cards (creates confusion)
+- Don't use cards for every small piece of content
+- Don't skip the `CardTitle` when you have a header
+- Don't use `<div onClick>` for clickable cards
+- Don't override all default styles (defeats the purpose)
+
+## Related Components
+
+- **Project Card** - Pre-built card for project information
+- **Stat Card** - Card for displaying statistics
+- **Data Viz Card** - Card with integrated charts
+- **Overall Status Card** - Card for status displays
+
+---
+
+Need help? Check the props table below or explore the interactive examples.
