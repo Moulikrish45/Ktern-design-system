@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DonutChart } from '@/components/dataviz/DonutChart';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { DonutChart } from './DonutChart';
 
 const meta = {
-    title: 'Organisms/Data Viz/Donut Chart',
+    title: 'Data Visualization/DonutChart',
     component: DonutChart,
     parameters: {
         layout: 'padded',

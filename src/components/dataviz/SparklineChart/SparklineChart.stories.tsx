@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { SparklineChart } from '@/components/dataviz/SparklineChart';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { SparklineChart } from './SparklineChart';
 
 const meta = {
-    title: 'Organisms/Data Viz/Sparkline Chart',
+    title: 'Data Visualization/SparklineChart',
     component: SparklineChart,
     parameters: {
         layout: 'padded',

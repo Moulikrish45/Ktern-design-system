@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BarChart } from '@/components/dataviz/BarChart';
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import { BarChart } from './BarChart';
 
 const meta = {
-    title: 'Organisms/Data Viz/Bar Chart',
+    title: 'Data Visualization/BarChart',
     component: BarChart,
     parameters: {
         layout: 'padded',
