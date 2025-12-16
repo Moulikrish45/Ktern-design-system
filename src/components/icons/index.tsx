@@ -22,7 +22,7 @@ export const RocketIcon: React.FC<IconProps> = ({ className = "w-6 h-6", size })
             d="M21.737 1.5c-5.397.006-9.981 2.975-13.253 6H2.25l-.75.75v4.5l.221.531 1.487 1.487.002.014 6 6 .014.002 1.499 1.499.277.217h4.5l.75-.75v-6.231c3.029-3.268 5.994-7.85 5.988-13.269zM3 9h3.965a36 36 0 0 0-3.338 4.065L3 12.441zm8.55 12-.63-.635a35.4 35.4 0 0 0 4.073-3.324V21zm-1.715-1.716L4.704 14.156C6.192 12 12.569 3.533 20.967 3.024c-.489 8.418-8.981 14.78-11.132 16.26M6 22.5v-1.5H3v-3H1.5v4.5zm10.122-11.5a2.25 2.25 0 1 0-3.744-2.499 2.25 2.25 0 0 0 3.744 2.499z"
             fill="currentColor"
         />
-        <path d="M6 22.5v-1.5H3v-3H1.5v4.5z" fill="#ff8f00" />
+        <path d="M6 22.5v-1.5H3v-3H1.5v4.5z" className="text-brand-secondary" fill="currentColor" />
     </svg>
 );
 
@@ -45,7 +45,7 @@ export const FlaskIcon: React.FC<IconProps> = ({ className = "w-6 h-6", size }) 
             strokeLinejoin="round"
             fill="none"
         />
-        <path d="M6.5 16h11" stroke="#ff8f00" strokeWidth="2" strokeLinecap="round" />
+        <path d="M6.5 16h11" className="text-brand-secondary" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
 );
 
@@ -67,8 +67,8 @@ export const EnterpriseIcon: React.FC<IconProps> = ({ className = "w-6 h-6", siz
         <rect x="10" y="6" width="2" height="2" fill="currentColor" />
         <rect x="6" y="10" width="2" height="2" fill="currentColor" />
         <rect x="10" y="10" width="2" height="2" fill="currentColor" />
-        <rect x="6" y="14" width="2" height="2" fill="#ff8f00" />
-        <rect x="10" y="14" width="2" height="2" fill="#ff8f00" />
+        <rect x="6" y="14" width="2" height="2" className="text-brand-secondary" fill="currentColor" />
+        <rect x="10" y="14" width="2" height="2" className="text-brand-secondary" fill="currentColor" />
     </svg>
 );
 
