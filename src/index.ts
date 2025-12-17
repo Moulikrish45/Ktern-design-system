@@ -4,8 +4,9 @@ export type { ButtonProps } from './components/atoms/Button'
 
 export { Input } from './components/atoms/Input'
 
-export { Badge } from './components/atoms/Badge'
-export type { BadgeProps } from './components/atoms/Badge'
+export { StatusBadge } from './components/atoms/StatusBadge'
+export type { StatusBadgeProps } from './components/atoms/StatusBadge'
+
 
 // Molecules
 export {
