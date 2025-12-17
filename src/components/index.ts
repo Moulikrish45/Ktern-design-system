@@ -2,7 +2,7 @@
 export * from './atoms/Button';
 export * from './atoms/Input';
 export * from './atoms/Label';
-export * from './atoms/Select';
+// Select moved to molecules/Select
 export * from './atoms/Textarea';
 
 // Molecules
@@ -14,11 +14,13 @@ export * from './templates/Dashboard';
 
 // Cards
 export * from './cards/StatCard';
-export * from './cards/OverallStatusCard';
+// Business cards moved to patterns/
+// export * from '@/patterns/OverallStatusCard';
+// export * from '@/patterns/ProjectCard';
+// export * from '@/patterns/TransformationVelocityCard';
+
 export * from './cards/DataVizCard';
-export * from './cards/ProjectCard';
 export * from './cards/HoverExpandCard';
-export * from './cards/TransformationVelocityCard';
 
 // Navigation
 export * from './navigation/Breadcrumbs';

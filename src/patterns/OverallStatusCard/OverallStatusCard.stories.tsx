@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { OverallStatusCard } from '@/components/cards/OverallStatusCard';
+import { OverallStatusCard } from './OverallStatusCard';
 
 const meta = {
     title: 'Organisms/Cards/Overall Status Card',

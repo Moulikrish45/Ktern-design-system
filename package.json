@@ -1,10 +1,50 @@
 {
-  "name": "ktern-design-system",
-  "version": "1.5.0",
-  "private": true,
+  "name": "@ktern/design-system",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A modern, accessible React component library with dark mode, theming, and TypeScript support",
+  "keywords": [
+    "react",
+    "components",
+    "design-system",
+    "ui-library",
+    "tailwind",
+    "typescript",
+    "dark-mode"
+  ],
+  "author": "Ktern Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/ktern-design-system"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./styles": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss",
+    "**/*.sass"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:lib": "vite build --config vite.config.lib.ts && tsc --project tsconfig.lib.json",
+    "pack:local": "npm run build:lib && npm pack",
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
@@ -15,7 +55,8 @@
     "test:ui": "vitest --ui",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "generate": "plop"
+    "generate": "plop",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -30,6 +71,12 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@eslint/eslintrc": "^3.3.3",
+    "@radix-ui/react-avatar": "^1.1.11",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-switch": "^1.2.6",
     "@storybook/addon-a11y": "^10.1.8",
     "@storybook/addon-docs": "^10.1.8",
     "@storybook/addon-links": "^10.1.8",
@@ -46,6 +93,8 @@
     "autoprefixer": "^10.4.20",
     "chromatic": "^13.3.4",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "glob": "^13.0.0",
+    "husky": "^9.1.7",
     "jsdom": "^27.3.0",
     "plop": "^4.0.4",
     "postcss": "^8.4.49",

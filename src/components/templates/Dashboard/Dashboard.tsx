@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../../atoms/Button';
 import { Input } from '../../atoms/Input';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../molecules/Card';
-import { ProjectCard } from '../../cards/ProjectCard';
+import { ProjectCard } from '../../../patterns/ProjectCard';
 import { StatCard } from '../../cards/StatCard';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../../molecules/Dialog';
 import { Label } from '../../atoms/Label';

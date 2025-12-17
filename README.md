@@ -1,24 +1,25 @@
-# KTern Design System
+# Ktern Design System
+### Codename: Arctic Horizon
 
-![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue)
-![Storybook](https://img.shields.io/badge/Storybook-Active-ff4785)
-![React](https://img.shields.io/badge/React-18.3.1-61dafb)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.16-38bdf8)
-![Chromatic](https://img.shields.io/badge/Chromatic-Visual%20Regression-fc521f)
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/next-20232A?style=for-the-badge&logo=next&logoColor=61DAFB" alt="next" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white" alt="Storybook" />
+  <img src="https://img.shields.io/badge/WCAG_2.1_AA-00A651?style=for-the-badge&logo=accessibility&logoColor=white" alt="WCAG 2.1 AA" />
+  <img src="https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge" alt="Build Status" />
+</p>
 
-A comprehensive, accessible design system for SAP transformation applications, built with React, TypeScript, Tailwind CSS, and Storybook.
+> An enterprise-grade, accessible, and themable component library built for scale.
 
-## ✨ Features
-
-- **🎨 Modern Design**: Beautiful, cohesive visual language with glassmorphism and gradient effects
-- **♿ Accessibility First**: Full keyboard navigation, ARIA attributes, focus management
-- **🌙 Dark Mode**: Complete dark mode support across all components
-- **📦 Composable**: Small, focused primitives that work together seamlessly
-- **🎯 TypeScript**: Strict typing for better developer experience
-- **📖 Documented**: Comprehensive Storybook with 100+ stories
-- **🧪 Battle-Tested**: Production-ready components used in enterprise applications
+---
 
 ## 🚀 Quick Start
+
+### Prerequisites
+
+- **Node.js** v20.x or later
+- **npm** v10.x or later
 
 ### Installation
 
@@ -29,233 +30,453 @@ cd ktern-design-system
 
 # Install dependencies
 npm install
+```
 
-# Start Storybook
+### Run Storybook
+
+```bash
 npm run storybook
 ```
 
-Storybook will open at [http://localhost:6006/](http://localhost:6006/)
+Open [http://localhost:6006](http://localhost:6006) to explore the component library.
 
-### Development
+### Build the Library
 
 ```bash
-# Run type checking
-npm run type-check
-
-# Build Storybook
-npm run build-storybook
-
-# Run linter (if configured)
-npm run lint
+npm run build:lib
 ```
 
-## 📚 Component Library
+---
 
-### Atoms (Primitives)
-- **Button** - 8 variants including Hero, Primary, Secondary, Outline, Ghost, Destructive
-- **Input** - Text, email, password, file inputs with full styling
-- **Label** - Accessible labels with peer-disabled support
-- **Textarea** - Multi-line text input with auto-resize
-- **Select** - Custom dropdown with groups, search, and keyboard navigation
+## 🏗️ Architecture & Philosophy
 
-### Molecules (Composed)
-- **Card** - Flexible container with Header, Title, Description, Content, Footer
-- **Dialog** - Fully accessible modal with focus trap and scroll lock
+### Atomic Design Structure
 
-### Cards (Specialized)
-- **StatCard** - Metrics with trends and positive/negative indicators
-- **ProjectCard** - SAP project cards with status, deadline, team size
-- **OverallStatusCard** - System status overview
-- **DataVizCard** - Data visualization containers
-- **HoverExpandCard** - Interactive cards with hover effects
-- **TransformationVelocityCard** - Progress tracking cards
+The component library follows the **Atomic Design** methodology:
 
-### Navigation
-- **Breadcrumbs** - Navigation breadcrumb trails
-- **Pagination** - Page navigation with ellipsis
-- **UnderlineTabs** - Animated tab navigation
+```
+src/components/
+├── atoms/          # Basic building blocks (Button, Input, Badge)
+├── molecules/      # Compositions of atoms (Card, Dialog, DropdownMenu)
+├── foundation/     # Layout primitives (Box, Stack, Grid, Container)
+├── templates/      # Page-level compositions
+└── patterns/       # Business-specific compositions (reference examples)
+```
 
-### Forms
-- **Checkbox** - Custom checkbox with indeterminate state
+| Level | Description | Examples |
+|-------|-------------|----------|
+| **Atoms** | Indivisible UI elements | Button, Input, Badge, Avatar, Switch |
+| **Molecules** | Groups of atoms working together | Card, Dialog, DropdownMenu, Select |
+| **Foundation** | Layout and spacing primitives | Box, Stack, Grid, Container |
+| **Templates** | Page-level layout structures | Dashboard |
+| **Patterns** | Business-specific compositions | ProjectCard, StatusCard |
 
-### Data Visualization
-- **BarChart** - Horizontal and vertical bar charts
-- **DonutChart** - Ring charts with center content
-- **SparklineChart** - Inline trend visualizations
+### Composition Over Configuration
 
-### Feedback
-- **Toast** - Notification system
+We follow the **Composition Pattern** instead of prop explosion:
 
-### Templates
-- **Dashboard** - Full dashboard layout showcasing component integration
+```tsx
+// ❌ Anti-pattern: Monolithic component
+<TextInput 
+  label="Email"
+  helperText="Enter your email"
+  errorText="Invalid email"
+  icon="mail"
+  showClearButton
+/>
 
-## 🎨 Design Tokens
+// ✅ Composition pattern: Flexible & extensible
+<Stack gap="1">
+  <Label htmlFor="email">Email</Label>
+  <Input id="email" type="email" aria-describedby="email-error" />
+  <p id="email-error" className="text-sm text-destructive">
+    Invalid email address
+  </p>
+</Stack>
+```
 
-The design system uses a comprehensive token system:
+### Token-Based Theming
 
+Three-layer architecture for runtime theme switching:
+
+1. **Design Tokens** → Source of truth (CSS variables)
+2. **CSS Variables** → Runtime switching (light/dark modes)
+3. **Tailwind Utilities** → Developer interface (semantic classes)
+
+```css
+/* Layer 2: CSS Variables */
+:root {
+  --primary: 79 70 229;
+  --background: 255 255 255;
+}
+
+.dark {
+  --primary: 99 102 241;
+  --background: 15 23 42;
+}
+```
+
+```tsx
+/* Layer 3: Tailwind (Developers use semantic names) */
+<Button className="bg-primary text-primary-foreground">
+  Click me
+</Button>
+```
+
+---
+
+## 📦 Component Library
+
+### Atoms
+
+| Component | Description | Features |
+|-----------|-------------|----------|
+| **Button** | Primary interactive element | 8 variants, loading state, icon support |
+| **Input** | Text input field | Validation states, ForwardRef |
+| **Badge** | Status indicator | Multiple variants, semantic colors |
+| **Avatar** | User profile image | Radix UI, fallback support, sizes |
+| **Switch** | Toggle control | Radix UI, full accessibility |
+| **Skeleton** | Loading placeholder | Tailwind animate-pulse |
+| **Label** | Form label | Semantic HTML |
+| **Textarea** | Multi-line input | Auto-resize option |
+
+### Molecules
+
+| Component | Description | Features |
+|-----------|-------------|----------|
+| **Card** | Content container | Compound components (Header, Title, Content, Footer) |
+| **Dialog** | Modal dialog | Radix UI, focus trap, accessibility |
+| **DropdownMenu** | Context menu | Radix UI, sub-menus, keyboard nav |
+| **Select** | Dropdown selector | Radix UI, typeahead |
+
+### Foundation (Layout Primitives)
+
+| Component | Description | Props |
+|-----------|-------------|-------|
+| **Box** | Polymorphic container | `as`, `className` |
+| **Stack** | Flexbox layout | `direction`, `gap`, `align`, `justify` |
+| **Grid** | CSS Grid layout | `columns`, `gap` |
+| **Container** | Max-width wrapper | `size` (sm/md/lg/xl/full) |
+
+```tsx
+// Polymorphic support
+<Stack as="section" direction="vertical" gap="4">
+  <Box as="article" className="p-4 bg-card">
+    Content
+  </Box>
+</Stack>
+```
+
+### Key Technical Features
+
+- ✅ **Radix UI Primitives** — Accessible, unstyled components
+- ✅ **CVA (Class Variance Authority)** — Type-safe variant management
+- ✅ **ForwardRef** — All components accept refs
+- ✅ **Semantic Tokens** — No hardcoded colors
+- ✅ **Dark Mode** — Native support via CSS variables
+- ✅ **TypeScript** — Full type safety
+
+---
+
+## 🎨 Theming & Customization
+
+### Theme Switching
+
+```tsx
+import { ThemeSwitcher, setTheme, toggleTheme } from '@ktern/design-system'
+
+// Use the ThemeSwitcher component
+<ThemeSwitcher mode="labeled" />
+
+// Or programmatically
+setTheme('dark')
+toggleTheme()
+```
+
+### White-Labeling (Custom Themes)
+
+```tsx
+import { applyCustomTheme, resetCustomTheme } from '@ktern/design-system'
+
+// Apply custom brand colors
+applyCustomTheme({
+  primary: '220 80 50',        // HSL values
+  secondary: '180 60 45',
+  accent: '45 90 55',
+  background: '0 0 100',
+  foreground: '220 15 20',
+})
+
+// Reset to default theme
+resetCustomTheme()
+```
+
+### Available CSS Variables
+
+```css
+--primary / --primary-foreground
+--secondary / --secondary-foreground
+--accent / --accent-foreground
+--background / --foreground
+--card / --card-foreground
+--muted / --muted-foreground
+--destructive / --destructive-foreground
+--border / --input / --ring
+```
+
+---
+
+## �‍💻 Developer Workflow
+
+### Creating Components
+
+Use the **Plop.js generator** to scaffold new components:
+
+```bash
+npm run generate
+```
+
+Follow the prompts:
+1. Select component type (atom, molecule, foundation, etc.)
+2. Enter component name (e.g., `Tooltip`)
+3. Choose if CVA variants are needed
+
+**Generated files:**
+```
+src/components/atoms/Tooltip/
+├── Tooltip.tsx          # Component implementation
+├── Tooltip.stories.tsx  # Storybook stories
+├── Tooltip.test.tsx     # Unit tests
+└── index.ts             # Barrel export
+```
+
+### Testing
+
+```bash
+# Run all tests
+npm test
+
+# Watch mode
+npm run test:watch
+
+# With coverage
+npm run test:coverage
+
+# UI mode
+npm run test:ui
+```
+
+**Testing Stack:**
+- **Vitest** — Fast unit testing
+- **React Testing Library** — Component testing
+- **Chromatic** — Visual regression testing
+
+### Committing Code
+
+Commits follow **Conventional Commits** and are validated by Husky:
+
+```bash
+# ✅ Good commits
+feat: add Tooltip component
+fix: button hover state in dark mode
+docs: update README examples
+test: add Avatar accessibility tests
+
+# ❌ Rejected commits
+fixed stuff          # Missing type
+feat: Added button   # Wrong tense
+```
+
+**Pre-commit checks (automatic):**
+1. `npm run lint` — ESLint + jsx-a11y
+2. `npm run type-check` — TypeScript validation
+3. `npm test` — Unit tests
+
+---
+
+## 📦 Build & Distribution
+
+### Library Build
+
+```bash
+# Build for distribution
+npm run build:lib
+
+# Create local package
+npm run pack:local
+```
+
+**Output:**
+- `dist/index.mjs` — ES Module
+- `dist/index.js` — CommonJS
+- `dist/index.d.ts` — TypeScript declarations
+
+### Tree Shaking
+
+The library is configured for optimal tree shaking:
+
+```json
+{
+  "sideEffects": ["**/*.css"]
+}
+```
+
+**Consumer benefits:**
 ```typescript
-// Colors
---brand-primary: #4F46E5
---brand-secondary: #06B6D4
---surface-light: #FFFFFF
---surface-dark: #0F172A
+// Only imports Button code
+import { Button } from '@ktern/design-system'
 
-// Typography
---font-family: 'Geist', sans-serif
---heading-lg: 3rem
---body-base: 1rem
-
-// Spacing
---spacing-base: 4px
---spacing-lg: 24px
-
-// Shadows
---shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05)
---shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1)
+// Input, Badge, etc. are tree-shaken away ✂️
 ```
 
-## 💡 Usage Examples
+### Using in Projects
 
-### Simple Button
+```bash
+npm install @ktern/design-system
+```
 
 ```tsx
-import { Button } from 'ktern-design-system';
+import { 
+  Button, 
+  Card, 
+  CardHeader, 
+  CardTitle,
+  Stack,
+  ThemeSwitcher 
+} from '@ktern/design-system'
 
 function App() {
   return (
-    <Button variant="primary" onClick={() => alert('Clicked!')}>
-      Click Me
-    </Button>
-  );
+    <Stack gap="4">
+      <ThemeSwitcher />
+      <Card>
+        <CardHeader>
+          <CardTitle>Welcome</CardTitle>
+        </CardHeader>
+      </Card>
+      <Button variant="primary">Get Started</Button>
+    </Stack>
+  )
 }
 ```
 
-### Form with Dialog
+---
 
-```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, Button, Label, Input } from 'ktern-design-system';
+## 📁 Project Structure
 
-function CreateProjectDialog() {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="hero">Create Project</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>New Project</DialogTitle>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid gap-2">
-            <Label htmlFor="name">Project Name</Label>
-            <Input id="name" placeholder="SAP S/4HANA Migration" />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button variant="primary">Create</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  );
-}
+```
+src/
+├── app/                    # Next.js app directory
+│   ├── globals.css         # Design tokens & CSS variables
+│   └── layout.tsx          # Root layout
+├── components/
+│   ├── atoms/              # Basic building blocks
+│   │   ├── Avatar/
+│   │   ├── Badge/
+│   │   ├── Button/
+│   │   ├── Input/
+│   │   ├── Label/
+│   │   ├── Skeleton/
+│   │   ├── Switch/
+│   │   └── Textarea/
+│   ├── molecules/          # Composed components
+│   │   ├── Card/
+│   │   ├── Dialog/
+│   │   ├── DropdownMenu/
+│   │   └── Select/
+│   ├── foundation/         # Layout primitives
+│   │   ├── Box/
+│   │   ├── Container/
+│   │   ├── Grid/
+│   │   └── Stack/
+│   ├── cards/              # Specialized card variants
+│   ├── dataviz/            # Chart components
+│   ├── feedback/           # Toast, alerts
+│   ├── forms/              # Form components
+│   ├── modals/             # Modal dialogs
+│   ├── navigation/         # Nav components
+│   ├── templates/          # Page layouts
+│   ├── tokens/             # Token documentation
+│   └── utilities/          # ThemeSwitcher, etc.
+├── lib/
+│   ├── theme/              # Theme management utilities
+│   └── utils.ts            # cn() utility
+├── patterns/               # Business-specific examples
+│   ├── ProjectCard/
+│   ├── OverallStatusCard/
+│   └── TransformationVelocityCard/
+└── index.ts                # Main exports
 ```
 
-### Dashboard Layout
+---
 
-```tsx
-import { Dashboard } from 'ktern-design-system';
+## 🔧 Available Scripts
 
-function App() {
-  return <Dashboard />;
-}
-```
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start Next.js development server |
+| `npm run storybook` | Start Storybook on port 6006 |
+| `npm run build:lib` | Build library for distribution |
+| `npm run pack:local` | Create local npm package |
+| `npm test` | Run unit tests |
+| `npm run test:coverage` | Run tests with coverage |
+| `npm run lint` | Run ESLint |
+| `npm run type-check` | TypeScript validation |
+| `npm run generate` | Scaffold new component |
+| `npm run chromatic` | Run visual regression tests |
 
-## 🏗️ Architecture
+---
 
-### Design Principles
+## 🛡️ Quality Gates
 
-1. **Composition Over Configuration** - Small, focused components that compose together
-2. **Accessibility First** - WCAG 2.1 AA compliant with full keyboard support
-3. **Type Safety** - Strict TypeScript for better DX and fewer runtime errors
-4. **Performance** - Optimized bundle size with tree-shaking support
-5. **Consistency** - Using CVA (Class Variance Authority) for variant management
+### Automated Checks
 
-### Technology Stack
+Every commit is validated:
 
-- **React 18.3.1** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS 3.4.16** - Utility-first styling
-- **Radix UI** - Headless accessible components
-- **CVA** - Type-safe variant management
-- **Storybook 10.1.9** - Component documentation
-- **Lucide React** - Icon library
-
-## 📖 Documentation
-
-All components are documented in Storybook with:
-- Interactive examples
-- Props tables
-- Accessibility guidelines
-- Dark mode variants
-- Composition patterns
-
-Visit the [Storybook](http://localhost:6006/) to explore all components.
-
-## 🧪 Testing
-
-### TypeScript & Build
-- **TypeScript** - Strict type checking with `npm run type-check`
-- **Build** - Storybook build verification
+| Check | Tool | Purpose |
+|-------|------|---------|
+| Linting | ESLint + jsx-a11y | Code quality & accessibility |
+| Type Checking | TypeScript | Type safety |
+| Unit Tests | Vitest | Regression prevention |
+| Commit Messages | Commitlint | Clean git history |
+| Visual Regression | Chromatic | UI consistency |
 
 ### Accessibility
-- **@storybook/addon-a11y** - Realtime accessibility testing in Storybook
-- **WCAG 2.1 AA** - All components compliant
 
-### Visual Regression Testing
-- **Chromatic** - Automated visual regression testing
-- **Setup:**
-  1. Sign up at [chromatic.com](https://chromatic.com)
-  2. Add your project token to GitHub Secrets as `CHROMATIC_PROJECT_TOKEN`
-  3. Run `npm run chromatic` locally or let CI handle it automatically
-- **Benefits:**
-  - Catches 1px margin shifts
-  - Prevents accidental style changes
-  - Screenshot comparison on every commit
-  - Free tier available
+- **WCAG 2.1 AA Compliant**
+- Keyboard navigation
+- Screen reader support
+- Focus management
+- ARIA attributes
 
-### Running Tests
+---
 
-```bash
-# Type check
-npm run type-check
+## 📚 Documentation
 
-# Build Storybook (production verify)
-npm run build-storybook
+- **Storybook** — Interactive component playground
+- **JSDoc** — Inline code documentation
+- **TypeScript** — Auto-generated prop tables
 
-# Chromatic (visual regression)
-npm run chromatic
-```
+---
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🙏 Acknowledgments
-
-- Design inspired by **Shadcn/ui** and **Radix UI**
-- Built with best practices from **Josh Comeau**, **Kent C. Dodds**, and **Adam Wathan**
-- SAP transformation expertise from the KTern team
+2. Create a feature branch: `git checkout -b feat/new-component`
+3. Make changes following the coding standards
+4. Run tests: `npm test`
+5. Commit with conventional commits: `git commit -m "feat: add Tooltip"`
+6. Push and create a Pull Request
 
 ---
 
-**Made with ❤️ by the KTern Team**
+## 📄 License
 
-**Status**: ✅ Production Ready | 🚀 V1.5.0
+MIT © Ktern Team
+
+---
+
+<p align="center">
+  <strong>Built with ❤️ for enterprise applications</strong><br>
+  <em>Scalable • Accessible • Themable</em>
+</p>

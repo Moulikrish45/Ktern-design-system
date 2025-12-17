@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { TransformationVelocityCard } from '@/components/cards/TransformationVelocityCard';
+import { TransformationVelocityCard } from './TransformationVelocityCard';
 
 const meta = {
     title: 'Organisms/Cards/Transformation Velocity Card',
