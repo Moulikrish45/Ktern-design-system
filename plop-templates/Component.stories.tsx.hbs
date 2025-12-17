@@ -10,6 +10,7 @@ layout: 'centered',
 },
 tags: ['autodocs'],
 argTypes: {
+{{#if includeVariants}}
 variant: {
 control: 'select',
 options: ['default', 'outline', 'ghost', 'muted'],
@@ -18,6 +19,8 @@ size: {
 control: 'select',
 options: ['default', 'sm', 'lg'],
 },
+{{/if}}
+className: { control: 'text' },
 },
 } satisfies Meta<typeof {{pascalCase name}}>;
 
@@ -27,11 +30,14 @@ options: ['default', 'sm', 'lg'],
         export const Default: Story = {
         args: {
         children: '{{pascalCase name}} Content',
+        {{#if includeVariants}}
         variant: 'default',
         size: 'default',
+        {{/if}}
         },
         };
 
+        {{#if includeVariants}}
         export const Outline: Story = {
         args: {
         children: '{{pascalCase name}} Outline',
@@ -52,3 +58,4 @@ options: ['default', 'sm', 'lg'],
         size: 'lg',
         },
         };
+        {{/if}}
