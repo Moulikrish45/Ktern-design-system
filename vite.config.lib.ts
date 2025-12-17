@@ -1,78 +1,46 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
-import { glob } from 'glob'
-
-// Get all component entry points
-const components = glob.sync('src/components/**/*.tsx', {
-    ignore: ['**/*.stories.tsx', '**/*.test.tsx']
-})
+import dts from 'vite-plugin-dts'
+import { resolve } from 'path'
+import tailwindcss from 'tailwindcss'
 
 export default defineConfig({
-    plugins: [react()],
+    plugins: [
+        react(),
+        dts({
+            include: ['src/components', 'src/lib', 'src/styles', 'src/index.ts', 'src/patterns'],
+            exclude: ['**/*.stories.ts', '**/*.stories.tsx', '**/*.test.ts', '**/*.test.tsx'],
+            insertTypesEntry: true,
+        }),
+    ],
     build: {
         lib: {
-            entry: {
-                // Main entry point
-                index: path.resolve(__dirname, 'src/index.ts'),
-                // Individual component entries for tree shaking
-                ...Object.fromEntries(
-                    components.map(file => [
-                        // Convert path to entry name: src/components/atoms/Button/Button.tsx -> atoms-Button
-                        file
-                            .replace('src/components/', '')
-                            .replace('.tsx', '')
-                            .replace(/\//g, '-'),
-                        file
-                    ])
-                )
-            },
+            entry: resolve(__dirname, 'src/index.ts'),
+            name: 'KternDesignSystem',
+            fileName: (format) => `ktern-design-system.${format}.js`,
             formats: ['es', 'cjs'],
-            fileName: (format, entryName) => {
-                const ext = format === 'es' ? 'mjs' : 'js'
-                return `${entryName}.${ext}`
-            }
         },
         rollupOptions: {
-            // Externalize dependencies that shouldn't be bundled
-            external: [
-                'react',
-                'react-dom',
-                'react/jsx-runtime',
-                'next',
-                'tailwindcss',
-                '@radix-ui/react-dialog',
-                '@radix-ui/react-slot',
-                '@radix-ui/react-select',
-                '@radix-ui/react-tabs',
-                'class-variance-authority',
-                'clsx',
-                'tailwind-merge',
-                'lucide-react',
-                'recharts'
-            ],
+            external: ['react', 'react-dom', 'react/jsx-runtime', 'tailwindcss'],
             output: {
                 globals: {
                     react: 'React',
                     'react-dom': 'ReactDOM',
-                    'react/jsx-runtime': 'jsxRuntime'
+                    tailwindcss: 'tailwindcss',
                 },
-                // Preserve module structure for better tree shaking
-                preserveModules: true,
-                preserveModulesRoot: 'src',
-                exports: 'named'
-            }
+            },
         },
-        outDir: 'dist',
-        emptyOutDir: true,
-        sourcemap: true,
-        // Optimize build
-        minify: 'esbuild',
-        target: 'es2020'
+        // This is critical for the README instructions:
+        cssCodeSplit: false, // Forces all CSS into one style.css file
     },
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src')
-        }
-    }
+            '@': resolve(__dirname, './src'),
+        },
+    },
+    css: {
+        postcss: {
+            plugins: [tailwindcss],
+        },
+    },
 })

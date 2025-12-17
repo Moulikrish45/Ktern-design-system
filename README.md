@@ -329,11 +329,37 @@ import { Button } from '@ktern/design-system'
 // Input, Badge, etc. are tree-shaken away ✂️
 ```
 
-### Using in Projects
+## 🔌 Integration Guide
 
-```bash
-npm install @ktern/design-system
+### 1. Import Global Styles
+
+In your root file (e.g., `app/layout.tsx`), import the design system's CSS:
+
+```tsx
+// Import THIS before your own globals.css
+import '@ktern/design-system/dist/style.css'; 
+import './globals.css';
 ```
+
+### 2. Configure Tailwind
+
+Add the library to your content array so Tailwind sees the classes:
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    // Add this line:
+    "./node_modules/@ktern/design-system/dist/**/*.{js,mjs}"
+  ],
+  // ...
+}
+```
+
+### 3. Usage
+
+Import components directly:
 
 ```tsx
 import { 
