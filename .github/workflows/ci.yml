@@ -21,20 +21,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.0'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
       - name: TypeScript type check
-        run: npx tsc --noEmit
+        run: npm run type-check
+
+      - name: Run Unit Tests
+        run: npm run test
 
       - name: Build Storybook
         run: npm run build-storybook
+        env:
+          NODE_OPTIONS: '--max_old_space_size=4096'
 
-  build:
-    name: Build Check
+  build-lib:
+    name: Library Build
     runs-on: ubuntu-latest
 
     steps:
@@ -44,13 +49,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.0'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Storybook
-        run: npm run build-storybook
-        env:
-          NODE_OPTIONS: '--max_old_space_size=4096'
+      - name: Build Library
+        run: npm run build:lib

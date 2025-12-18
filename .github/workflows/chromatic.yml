@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.19.0'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -30,3 +30,6 @@ jobs:
           # 👇 Chromatic projectToken, refer to the secret you set up
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          buildScriptName: build-storybook
+        env:
+          NODE_OPTIONS: '--max_old_space_size=4096'
