@@ -13,10 +13,14 @@ const preview: Preview = {
             },
         },
         backgrounds: {
+            // LIGHT MODE ONLY: Disable background switcher toolbar
+            // This prevents developers from seeing/using dark mode options
+            disable: true,
             default: 'light',
             values: [
                 { name: 'Light', value: '#f8f8ff' },
-                { name: 'Dark', value: '#100c08' }
+                // Dark mode removed - light mode only per stakeholder requirements
+                // { name: 'Dark', value: '#100c08' }
             ],
         },
         layout: 'padded',
@@ -29,6 +33,20 @@ const preview: Preview = {
 
     decorators: [
         (Story, context) => {
+            // LIGHT MODE ONLY ENFORCEMENT
+            // Always remove 'dark' class and ensure 'light' is applied
+            React.useEffect(() => {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+            }, []);
+
+            return (
+                <div className="font-sans antialiased bg-background text-foreground p-6">
+                    <Story />
+                </div>
+            );
+
+            /* PRESERVED FOR FUTURE RE-ENABLEMENT
             // Simple dark mode detection from background value
             const isDark = context.globals.backgrounds?.value === '#100c08';
 
@@ -48,6 +66,7 @@ const preview: Preview = {
                     </div>
                 </div>
             );
+            */
         },
     ],
 };

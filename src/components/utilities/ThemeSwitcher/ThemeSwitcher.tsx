@@ -18,6 +18,10 @@ export interface ThemeSwitcherProps {
 /**
  * ThemeSwitcher - Toggle between light, dark, and system themes
  * 
+ * @deprecated This component is no longer supported as dark mode has been disabled.
+ * The Ktern Design System now enforces light mode only per stakeholder requirements.
+ * This component is preserved for API compatibility but will have no effect.
+ * 
  * @example
  * ```tsx
  * <ThemeSwitcher mode="icon" />

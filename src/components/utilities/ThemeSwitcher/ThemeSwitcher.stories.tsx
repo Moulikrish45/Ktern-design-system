@@ -1,3 +1,4 @@
+/*
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { ThemeSwitcher } from './ThemeSwitcher'
@@ -50,3 +51,8 @@ export const Large: Story = {
         size: 'lg',
     },
 }
+*/
+
+// Empty export to satisfy build tools while stories are hidden
+export default {};
+

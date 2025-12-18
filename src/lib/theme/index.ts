@@ -8,27 +8,42 @@ export type ResolvedTheme = 'light' | 'dark'
 
 /**
  * Get the current theme from localStorage or system preference
+ * 
+ * @deprecated Light mode only - theme switching has been disabled per stakeholder requirements.
+ * This function always returns 'light' but is preserved for API compatibility.
  */
 export function getTheme(): Theme {
-    if (typeof window === 'undefined') return 'system'
+    // LIGHT MODE ONLY ENFORCEMENT
+    // Always return 'light' - dark mode is not a user-facing feature
+    return 'light'
 
+    /* PRESERVED FOR FUTURE RE-ENABLEMENT
+    if (typeof window === 'undefined') return 'system'
     const stored = localStorage.getItem('theme') as Theme | null
     if (stored && ['light', 'dark', 'system'].includes(stored)) {
         return stored
     }
-
     return 'system'
+    */
 }
 
 /**
  * Get the resolved theme (either 'light' or 'dark')
+ * 
+ * @deprecated Light mode only - this always returns 'light'.
+ * Preserved for API compatibility and future re-enablement.
  */
 export function getResolvedTheme(theme: Theme = getTheme()): ResolvedTheme {
+    // LIGHT MODE ONLY ENFORCEMENT
+    return 'light'
+
+    /* PRESERVED FOR FUTURE RE-ENABLEMENT
     if (theme === 'system') {
         if (typeof window === 'undefined') return 'light'
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
     return theme
+    */
 }
 
 /**
@@ -68,13 +83,20 @@ export function toggleTheme(): void {
 /**
  * Initialize theme on page load
  * Call this in your root layout or _app file
+ * 
+ * @deprecated Light mode only - always applies 'light' theme.
  */
 export function initializeTheme(): void {
     if (typeof window === 'undefined') return
 
+    // LIGHT MODE ONLY ENFORCEMENT
+    // Always apply 'light' class, never 'dark'
+    document.documentElement.classList.remove('dark')
+    document.documentElement.classList.add('light')
+
+    /* PRESERVED FOR FUTURE RE-ENABLEMENT
     const theme = getTheme()
     const resolved = getResolvedTheme(theme)
-
     document.documentElement.classList.add(resolved)
 
     // Listen for system theme changes if theme is 'system'
@@ -86,6 +108,7 @@ export function initializeTheme(): void {
             root.classList.add(e.matches ? 'dark' : 'light')
         })
     }
+    */
 }
 
 /**

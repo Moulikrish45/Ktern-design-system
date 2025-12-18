@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge" alt="Build Status" />
 </p>
 
-> An enterprise-grade, accessible, and themable component library built for scale.
+> An enterprise-grade, accessible, high-clarity component library built for scale.
 
 ---
 
@@ -173,43 +173,33 @@ Three-layer architecture for runtime theme switching:
 - ✅ **CVA (Class Variance Authority)** — Type-safe variant management
 - ✅ **ForwardRef** — All components accept refs
 - ✅ **Semantic Tokens** — No hardcoded colors
-- ✅ **Dark Mode** — Native support via CSS variables
+- ✅ **High-Contrast Light Mode** — Optimized for clarity and readability
 - ✅ **TypeScript** — Full type safety
 
 ---
 
-## 🎨 Theming & Customization
+## 🎨 Customization & White-Labeling
 
-### Theme Switching
+### Custom Brand Colors
 
-```tsx
-import { ThemeSwitcher, setTheme, toggleTheme } from '@ktern/design-system'
-
-// Use the ThemeSwitcher component
-<ThemeSwitcher mode="labeled" />
-
-// Or programmatically
-setTheme('dark')
-toggleTheme()
-```
-
-### White-Labeling (Custom Themes)
+The design system supports white-labeling through custom brand colors:
 
 ```tsx
 import { applyCustomTheme, resetCustomTheme } from '@ktern/design-system'
 
-// Apply custom brand colors
+// Apply custom brand colors (RGB format)
 applyCustomTheme({
-  primary: '220 80 50',        // HSL values
-  secondary: '180 60 45',
-  accent: '45 90 55',
-  background: '0 0 100',
-  foreground: '220 15 20',
+  colorBrandPrimary: '220 80 50',
+  colorBrandSecondary: '180 60 45',
+  colorSuccess: '45 90 55',
 })
 
 // Reset to default theme
 resetCustomTheme()
 ```
+
+> **Note:** Dark mode has been disabled per stakeholder requirements. The system
+> enforces a high-clarity light mode interface optimized for enterprise use.
 
 ### Available CSS Variables
 
@@ -368,13 +358,11 @@ import {
   CardHeader, 
   CardTitle,
   Stack,
-  ThemeSwitcher 
 } from '@ktern/design-system'
 
 function App() {
   return (
     <Stack gap="4">
-      <ThemeSwitcher />
       <Card>
         <CardHeader>
           <CardTitle>Welcome</CardTitle>
@@ -504,5 +492,5 @@ MIT © Ktern Team
 
 <p align="center">
   <strong>Built with ❤️ for enterprise applications</strong><br>
-  <em>Scalable • Accessible • Themable</em>
+  <em>Scalable • Accessible • High-Clarity</em>
 </p>

@@ -64,16 +64,22 @@ export {
 // export { Textarea } from './components/atoms/Textarea'
 
 // Utilities
-export { ThemeSwitcher } from './components/utilities/ThemeSwitcher'
-export type { ThemeSwitcherProps } from './components/utilities/ThemeSwitcher'
+// ThemeSwitcher has been removed from public API - Light mode only
+// export { ThemeSwitcher } from './components/utilities/ThemeSwitcher'
+// export type { ThemeSwitcherProps } from './components/utilities/ThemeSwitcher'
 
 // Theme Management
+// NOTE: Theme switching functions are deprecated but preserved for API compatibility
+// The system is locked to light mode only. Only custom theming (white-labeling) remains active.
 export {
+    // Deprecated - always returns 'light'
     getTheme,
-    setTheme,
-    toggleTheme,
     getResolvedTheme,
     initializeTheme,
+    // No longer functional - light mode only
+    setTheme,
+    toggleTheme,
+    // Still functional for white-labeling
     applyCustomTheme,
     resetCustomTheme
 } from './lib/theme'
@@ -83,14 +89,13 @@ export type { Theme, ResolvedTheme, CustomTheme } from './lib/theme'
 export { cn } from './lib/utils'
 
 // Icons (re-export from lucide-react for convenience)
+// Note: Moon, Monitor icons removed as dark mode is disabled
 export {
     Calendar,
     ArrowRight,
     Users,
     CircleDot,
     Sun,
-    Moon,
-    Monitor
 } from 'lucide-react'
 
 // Custom Icons
