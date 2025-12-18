@@ -16,8 +16,8 @@ export const ColorTokens = () => {
                         <div className="w-16 h-16 rounded-lg bg-[#a9203e] shadow-inner"></div>
                         <div>
                             <div className="font-bold text-lg">Ruby Maroon</div>
-                            <div className="font-mono text-xs text-text-muted-light">var(--brand-primary)</div>
-                            <div className="font-mono text-xs opacity-50">#a9203e</div>
+                            <div className="font-mono text-xs text-neutral-600">var(--brand-primary)</div>
+                            <div className="font-mono text-xs text-neutral-600">#a9203e</div>
                         </div>
                         <div className="clipboard-tooltip">Click to copy</div>
                     </div>
@@ -26,8 +26,8 @@ export const ColorTokens = () => {
                         <div className="w-16 h-16 rounded-lg bg-[#ff8f00] shadow-inner"></div>
                         <div>
                             <div className="font-bold text-lg">Arctic Amber</div>
-                            <div className="font-mono text-xs text-text-muted-light">var(--brand-secondary)</div>
-                            <div className="font-mono text-xs opacity-50">#ff8f00</div>
+                            <div className="font-mono text-xs text-neutral-600">var(--brand-secondary)</div>
+                            <div className="font-mono text-xs text-neutral-600">#ff8f00</div>
                         </div>
                         <div className="clipboard-tooltip">Click to copy</div>
                     </div>
@@ -36,8 +36,8 @@ export const ColorTokens = () => {
                         <div className="w-16 h-16 rounded-lg bg-[#c41e3a] shadow-inner"></div>
                         <div>
                             <div className="font-bold text-lg">Ruby Maroon Dark</div>
-                            <div className="font-mono text-xs text-text-muted-light">Dark Mode Primary</div>
-                            <div className="font-mono text-xs opacity-50">#c41e3a</div>
+                            <div className="font-mono text-xs text-neutral-600">Dark Mode Primary</div>
+                            <div className="font-mono text-xs text-neutral-600">#c41e3a</div>
                         </div>
                         <div className="clipboard-tooltip">Click to copy</div>
                     </div>
@@ -46,8 +46,8 @@ export const ColorTokens = () => {
                         <div className="w-16 h-16 rounded-lg bg-[#ffae42] shadow-inner"></div>
                         <div>
                             <div className="font-bold text-lg">Arctic Amber Dark</div>
-                            <div className="font-mono text-xs text-text-muted-light">Dark Mode Secondary</div>
-                            <div className="font-mono text-xs opacity-50">#ffae42</div>
+                            <div className="font-mono text-xs text-neutral-600">Dark Mode Secondary</div>
+                            <div className="font-mono text-xs text-neutral-600">#ffae42</div>
                         </div>
                         <div className="clipboard-tooltip">Click to copy</div>
                     </div>
@@ -83,28 +83,28 @@ export const ColorTokens = () => {
                         <div className="w-6 h-6 rounded bg-success"></div>
                         <div>
                             <div className="text-xs font-bold">Success</div>
-                            <div className="text-[10px] font-mono opacity-60">#3cd070</div>
+                            <div className="text-[10px] font-mono text-neutral-600">#3cd070</div>
                         </div>
                     </div>
                     <div className="p-3 bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light flex items-center gap-3">
                         <div className="w-6 h-6 rounded bg-warning"></div>
                         <div>
                             <div className="text-xs font-bold">Warning</div>
-                            <div className="text-[10px] font-mono opacity-60">#fada5e</div>
+                            <div className="text-[10px] font-mono text-neutral-600">#fada5e</div>
                         </div>
                     </div>
                     <div className="p-3 bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light flex items-center gap-3">
                         <div className="w-6 h-6 rounded bg-danger"></div>
                         <div>
                             <div className="text-xs font-bold">Danger</div>
-                            <div className="text-[10px] font-mono opacity-60">#c41e3a</div>
+                            <div className="text-[10px] font-mono text-neutral-600">#c41e3a</div>
                         </div>
                     </div>
                     <div className="p-3 bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light flex items-center gap-3">
                         <div className="w-6 h-6 rounded bg-info"></div>
                         <div>
                             <div className="text-xs font-bold">Info</div>
-                            <div className="text-[10px] font-mono opacity-60">#4166f5</div>
+                            <div className="text-[10px] font-mono text-neutral-600">#4166f5</div>
                         </div>
                     </div>
                 </div>
