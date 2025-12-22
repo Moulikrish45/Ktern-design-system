@@ -4,7 +4,7 @@ import { Textarea } from './Textarea';
 import { Label } from '../Label';
 
 const meta = {
-    title: 'Atoms/Textarea',
+    title: 'Atoms/Input/Textarea',
     component: Textarea,
     parameters: {
         layout: 'centered',
@@ -49,86 +49,69 @@ export const WithRows: Story = {
 };
 
 // ============================================================================
-// COMPOSITION PATTERNS (Label + Textarea)
+// COMPOSITION PATTERNS (Integrated Props)
 // ============================================================================
 
 export const WithLabel: Story = {
-    render: () => (
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="message">Your message</Label>
-            <Textarea id="message" placeholder="Type your message here." />
-        </div>
-    ),
+    args: {
+        label: "Your Message",
+        placeholder: "Type your message here.",
+    }
 };
 
 export const WithHelperText: Story = {
-    render: () => (
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="bio">Bio</Label>
-            <Textarea id="bio" placeholder="Tell us about yourself" />
-            <p className="text-sm text-muted-foreground">
-                You can use markdown formatting.
-            </p>
-        </div>
-    ),
+    args: {
+        label: "Bio",
+        placeholder: "Tell us about yourself",
+        helperText: "You can use markdown formatting.",
+    }
+};
+
+export const WithErrorState: Story = {
+    args: {
+        label: "Description",
+        placeholder: "Describe the issue",
+        error: "Description must be at least 10 characters.",
+    }
+};
+
+export const WithSuccessState: Story = {
+    args: {
+        label: "Testimonial",
+        placeholder: "Share your experience",
+        success: "Thank you for your feedback!",
+        defaultValue: "This platform has completely transformed our workflow.",
+    }
+};
+
+export const WithWarningState: Story = {
+    args: {
+        label: "Security Update",
+        placeholder: "Explain the changes",
+        warning: "This message will be visible to all members.",
+    }
 };
 
 export const WithCharacterCount: Story = {
-    render: () => {
+    render: (args) => {
         const [value, setValue] = React.useState('');
         const maxLength = 280;
 
         return (
-            <div className="grid w-full max-w-sm items-center gap-1.5">
-                <Label htmlFor="tweet">Tweet</Label>
+            <div className="w-full max-w-sm">
                 <Textarea
-                    id="tweet"
+                    {...args}
+                    label="Tweet"
                     placeholder="What's happening?"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     maxLength={maxLength}
                     rows={4}
+                    helperText={`${value.length} / ${maxLength} characters`}
                 />
-                <p className="text-sm text-muted-foreground text-right">
-                    {value.length} / {maxLength}
-                </p>
             </div>
         );
     },
-};
-
-export const WithErrorState: Story = {
-    render: () => (
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="description" className="text-destructive">
-                Description
-            </Label>
-            <Textarea
-                id="description"
-                placeholder="Describe the issue"
-                className="border-destructive focus-visible:ring-destructive"
-                aria-invalid="true"
-                aria-describedby="description-error"
-            />
-            <p id="description-error" className="text-sm text-destructive">
-                Description must be at least 10 characters.
-            </p>
-        </div>
-    ),
-};
-
-export const DisabledWithLabel: Story = {
-    render: () => (
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="disabled">Disabled Textarea</Label>
-            <Textarea
-                id="disabled"
-                placeholder="Can't edit this"
-                disabled
-                defaultValue="This content cannot be edited."
-            />
-        </div>
-    ),
 };
 
 // ============================================================================
@@ -138,57 +121,13 @@ export const DisabledWithLabel: Story = {
 export const FeedbackForm: Story = {
     render: () => (
         <form className="w-full max-w-md space-y-4">
-            <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="form-name">Name</Label>
-                <input
-                    type="text"
-                    id="form-name"
-                    placeholder="John Doe"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                />
-            </div>
-
-            <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="feedback">Feedback</Label>
-                <Textarea
-                    id="feedback"
-                    placeholder="Tell us what you think..."
-                    rows={5}
-                />
-                <p className="text-sm text-muted-foreground">
-                    Your feedback helps us improve our products.
-                </p>
-            </div>
+            <Textarea
+                label="Product Feedback"
+                placeholder="Tell us what you think..."
+                rows={5}
+                helperText="Your feedback helps us improve our products."
+            />
         </form>
     ),
 };
 
-// ============================================================================
-// DARK MODE
-// ============================================================================
-
-export const DarkMode: Story = {
-    render: () => (
-        <div className="dark p-8 bg-surface-dark rounded-lg">
-            <div className="grid w-full max-w-sm items-center gap-1.5">
-                <Label htmlFor="dark-message" className="text-text-primary-dark">
-                    Message (Dark Mode)
-                </Label>
-                <Textarea
-                    id="dark-message"
-                    placeholder="Type your message..."
-                    className="bg-surface-dark text-text-primary-dark"
-                    rows={4}
-                />
-                <p className="text-sm text-text-muted-dark">
-                    Dark mode styling applied
-                </p>
-            </div>
-        </div>
-    ),
-    parameters: {
-        backgrounds: {
-            default: 'dark',
-        },
-    },
-};

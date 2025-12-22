@@ -38,8 +38,12 @@
         /* State Colors */
         --color-success: 60 208 112;
         /* #3cd070 - Emerald Teal */
+        --color-success-foreground: 22 101 52;
+        /* #166534 - Emerald 800 for high contrast text */
         --color-warning: 255 193 7;
         /* #ffc107 - Material Amber */
+        --color-warning-foreground: 146 64 14;
+        /* #92400e - Amber 800 for high contrast text */
         --color-danger: 196 30 58;
         /* #c41e3a - Maroon Red */
         --color-info: 65 102 245;
@@ -87,6 +91,10 @@
         /* Destructive */
         --destructive: var(--color-danger);
         --destructive-foreground: var(--color-neutral-0);
+
+        /* State semantic foregrounds for accessibility */
+        --success-foreground: var(--color-success-foreground);
+        --warning-foreground: var(--color-warning-foreground);
 
         /* Borders */
         --border: var(--color-neutral-200);

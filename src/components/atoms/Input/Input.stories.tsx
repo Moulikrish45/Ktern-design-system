@@ -58,6 +58,8 @@ export const PasswordType: Story = {
 export const FileType: Story = {
     args: {
         type: 'file',
+        label: 'Upload Assets',
+        helperText: 'Select the files you want to include in your project.',
     },
 };
 
@@ -109,21 +111,27 @@ export const WithErrorState: Story = {
 
 export const WithSuccessState: Story = {
     render: () => (
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="email-4" className="text-success">
-                Email
-            </Label>
-            <Input
-                type="email"
-                id="email-4"
-                placeholder="Email"
-                className="border-success focus-visible:ring-success"
-                defaultValue="user@example.com"
-            />
-            <p className="text-sm text-success">
-                ✓ Email is available
-            </p>
-        </div>
+        <Input
+            type="email"
+            label="Email"
+            placeholder="Email"
+            success="Email is available"
+            defaultValue="user@example.com"
+            className="max-w-sm"
+        />
+    ),
+};
+
+export const WithWarningState: Story = {
+    render: () => (
+        <Input
+            type="password"
+            label="Password"
+            placeholder="Enter password"
+            warning="Password is weak"
+            defaultValue="123456"
+            className="max-w-sm"
+        />
     ),
 };
 
@@ -166,34 +174,4 @@ export const ContactForm: Story = {
             </div>
         </form>
     ),
-};
-
-// ============================================================================
-// DARK MODE
-// ============================================================================
-
-export const DarkMode: Story = {
-    render: () => (
-        <div className="dark p-8 bg-surface-dark rounded-lg">
-            <div className="grid w-full max-w-sm items-center gap-1.5">
-                <Label htmlFor="dark-email" className="text-text-primary-dark">
-                    Email (Dark Mode)
-                </Label>
-                <Input
-                    type="email"
-                    id="dark-email"
-                    placeholder="Email"
-                    className="bg-surface-dark text-text-primary-dark"
-                />
-                <p className="text-sm text-text-muted-dark">
-                    Dark mode styling applied
-                </p>
-            </div>
-        </div>
-    ),
-    parameters: {
-        backgrounds: {
-            default: 'dark',
-        },
-    },
 };

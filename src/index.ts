@@ -6,6 +6,17 @@ export { Button } from './components/atoms/Button'
 export type { ButtonProps } from './components/atoms/Button'
 
 export { Input } from './components/atoms/Input'
+export type { InputProps } from './components/atoms/Input'
+
+export { Textarea } from './components/atoms/Textarea'
+export type { TextareaProps } from './components/atoms/Textarea'
+
+export { Select } from './components/atoms/Select'
+export type { SelectProps, SelectOption } from './components/atoms/Select'
+
+export { Label } from './components/atoms/Label'
+
+export { Checkbox } from './components/atoms/Checkbox'
 
 export { StatusBadge } from './components/atoms/StatusBadge'
 export type { StatusBadgeProps } from './components/atoms/StatusBadge'

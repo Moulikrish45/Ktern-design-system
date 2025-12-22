@@ -53,6 +53,7 @@ export const Dashboard = ({ className }: DashboardProps) => {
                             <Input
                                 type="search"
                                 placeholder="Search..."
+                                aria-label="Search projects..."
                                 className="w-[160px] lg:w-[240px] hidden sm:block"
                             />
                             <Avatar fallback="JD" size="sm" className="sm:hidden" />
@@ -90,28 +91,22 @@ export const Dashboard = ({ className }: DashboardProps) => {
                                         </DialogDescription>
                                     </DialogHeader>
                                     <Stack gap="4" className="py-4">
-                                        <Stack gap="2">
-                                            <Label htmlFor="project-name">Project Name</Label>
-                                            <Input
-                                                id="project-name"
-                                                placeholder="SAP S/4HANA Migration"
-                                            />
-                                        </Stack>
-                                        <Stack gap="2">
-                                            <Label htmlFor="description">Description</Label>
-                                            <Textarea
-                                                id="description"
-                                                placeholder="Describe your project..."
-                                                rows={3}
-                                            />
-                                        </Stack>
-                                        <Stack gap="2">
-                                            <Label htmlFor="client">Client Name</Label>
-                                            <Input
-                                                id="client"
-                                                placeholder="Acme Corporation"
-                                            />
-                                        </Stack>
+                                        <Input
+                                            id="project-name"
+                                            label="Project Name"
+                                            placeholder="SAP S/4HANA Migration"
+                                        />
+                                        <Textarea
+                                            id="description"
+                                            label="Description"
+                                            placeholder="Describe your project..."
+                                            rows={3}
+                                        />
+                                        <Input
+                                            id="client"
+                                            label="Client Name"
+                                            placeholder="Acme Corporation"
+                                        />
                                     </Stack>
                                     <DialogFooter className="gap-2">
                                         <Button variant="outline" size="sm">Cancel</Button>

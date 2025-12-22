@@ -1,5 +1,6 @@
-// Select has been moved to molecules/
-// export { Select } from '@/components/molecules/Select'
-
-export { Textarea } from './Textarea/index';
-export { Checkbox } from './Checkbox/index';
+// Form components have been reorganized:
+// - Textarea is now in atoms/Textarea
+// - Select is now in atoms/Select
+export { Textarea } from '../atoms/Textarea';
+export { Select } from '../atoms/Select';
+export { Checkbox } from '../atoms/Checkbox';

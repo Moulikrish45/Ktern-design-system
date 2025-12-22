@@ -2,8 +2,9 @@
 export * from './atoms/Button';
 export * from './atoms/Input';
 export * from './atoms/Label';
-// Select moved to molecules/Select
+export * from './atoms/Select';
 export * from './atoms/Textarea';
+export * from './atoms/Checkbox';
 
 // Molecules
 export * from './molecules/Card';
@@ -28,7 +29,8 @@ export * from './navigation/Pagination';
 export * from './navigation/UnderlineTabs';
 
 // Forms
-export * from './forms/Checkbox';
+// Checkbox moved to atoms
+
 
 // Data Visualization
 export * from './dataviz/BarChart';

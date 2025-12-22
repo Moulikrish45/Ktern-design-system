@@ -58,8 +58,14 @@ const config: Config = {
                 },
 
                 // State Colors
-                success: 'rgb(var(--success) / <alpha-value>)',
-                warning: 'rgb(var(--warning) / <alpha-value>)',
+                success: {
+                    DEFAULT: 'rgb(var(--success) / <alpha-value>)',
+                    foreground: 'rgb(var(--success-foreground) / <alpha-value>)',
+                },
+                warning: {
+                    DEFAULT: 'rgb(var(--warning) / <alpha-value>)',
+                    foreground: 'rgb(var(--warning-foreground) / <alpha-value>)',
+                },
                 danger: 'rgb(var(--destructive) / <alpha-value>)',
                 info: 'rgb(var(--info) / <alpha-value>)',
 
