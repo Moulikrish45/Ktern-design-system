@@ -2,5 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # Commit message validation temporarily disabled
-# echo "📝 Validating commit message..."
+# echo " Validating commit message..."
 # npx --no -- commitlint --edit $1

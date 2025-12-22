@@ -46,6 +46,7 @@ export const Pagination = ({
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
+                aria-label="Go to previous page"
                 className="w-10 h-10 flex items-center justify-center rounded-xl rounded-tl-none border border-border-light dark:border-border-dark hover:border-brand-primary hover:text-brand-primary transition-all disabled:opacity-50"
             >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,6 +71,8 @@ export const Pagination = ({
                     <button
                         key={pageNum}
                         onClick={() => handlePageChange(pageNum)}
+                        aria-label={`Go to page ${pageNum}`}
+                        aria-current={isActive ? 'page' : undefined}
                         className={
                             isActive
                                 ? 'w-10 h-10 flex items-center justify-center bg-brand-primary text-white font-bold rounded-xl rounded-tl-none shadow-lg shadow-brand-primary/20'
@@ -85,6 +88,7 @@ export const Pagination = ({
             <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
+                aria-label="Go to next page"
                 className="w-10 h-10 flex items-center justify-center rounded-xl rounded-tl-none border border-border-light dark:border-border-dark hover:border-brand-primary hover:text-brand-primary transition-all disabled:opacity-50"
             >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

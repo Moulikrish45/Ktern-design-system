@@ -8,32 +8,32 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Primary: Exact matches HTML "Primary Innovation" classes
+        // Primary: Responsive asymmetric shape that scales with viewport
         primary:
-          "group relative bg-brand-primary text-white font-bold rounded-2xl rounded-tl-none border-2 border-transparent shadow-lg shadow-brand-primary/30 hover:shadow-brand-primary/50 hover:-translate-y-1 duration-300 overflow-hidden",
+          "group relative bg-brand-primary text-white font-bold border-2 border-transparent shadow-lg shadow-brand-primary/30 hover:shadow-brand-primary/50 hover:-translate-y-1 duration-300 overflow-hidden [border-radius:0_clamp(0.75rem,2vw,1rem)_clamp(0.75rem,2vw,1rem)_clamp(0.75rem,2vw,1rem)]",
 
-        // Secondary: Exact matches HTML "Secondary Innovation" classes
+        // Secondary: Responsive asymmetric shape that scales with viewport
         secondary:
-          "group relative bg-transparent font-bold rounded-2xl rounded-tl-none overflow-hidden duration-300 border-2 border-brand-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-primary/20",
+          "group relative bg-transparent font-bold overflow-hidden duration-300 border-2 border-brand-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-primary/20 [border-radius:0_clamp(0.75rem,2vw,1rem)_clamp(0.75rem,2vw,1rem)_clamp(0.75rem,2vw,1rem)]",
 
-        // Hero: Exact matches HTML "Tern Hero Button" classes
+        // Hero: Responsive diagonal corners that scale with viewport
         hero:
-          "group relative inline-flex items-center justify-center px-8 py-3.5 rounded-tl-[2rem] rounded-br-[2rem] bg-white font-bold text-lg text-brand-tertiary border-2 border-transparent bg-clip-padding before:absolute before:inset-0 before:-z-10 before:rounded-tl-[2rem] before:rounded-br-[2rem] before:bg-gradient-to-br before:from-brand-primarydark before:via-brand-tertiary before:to-brand-secondary focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-primary focus-visible:outline-offset-0",
+          "group relative inline-flex items-center justify-center px-8 py-3.5 bg-white font-bold text-lg text-brand-tertiary border-2 border-transparent bg-clip-padding before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-br before:from-brand-primarydark before:via-brand-tertiary before:to-brand-secondary focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-primary focus-visible:outline-offset-0 [border-radius:clamp(1rem,3vw,2rem)_0_clamp(1rem,3vw,2rem)_0] before:[border-radius:clamp(1rem,3vw,2rem)_0_clamp(1rem,3vw,2rem)_0]",
 
         // Standard variants with proper styling
-        outline: "rounded-xl border-2 border-brand-primary bg-transparent text-brand-primary font-semibold hover:bg-brand-primary hover:text-white hover:shadow-lg hover:shadow-brand-primary/30 transition-all duration-300 dark:border-brand-primarydark dark:text-brand-primarydark dark:hover:bg-brand-primarydark dark:hover:text-white dark:hover:shadow-brand-primarydark/30",
+        outline: "rounded-lg border-2 border-brand-primary bg-transparent text-brand-primary font-semibold hover:bg-brand-primary hover:text-white hover:shadow-lg hover:shadow-brand-primary/30 transition-all duration-300 dark:border-brand-primarydark dark:text-brand-primarydark dark:hover:bg-brand-primarydark dark:hover:text-white dark:hover:shadow-brand-primarydark/30",
 
         ghost: "rounded-lg text-brand-primary font-semibold hover:bg-brand-primary/10 hover:text-brand-primarydark dark:text-brand-primarydark dark:hover:bg-brand-primarydark/10 dark:hover:text-brand-primary transition-all duration-200",
 
-        destructive: "rounded-xl bg-danger text-white font-semibold shadow-md shadow-danger/20 hover:bg-danger/90 hover:shadow-lg hover:shadow-danger/30 hover:-translate-y-0.5 transition-all duration-300",
+        destructive: "rounded-lg bg-danger text-white font-semibold shadow-md shadow-danger/20 hover:bg-danger/90 hover:shadow-lg hover:shadow-danger/30 hover:-translate-y-0.5 transition-all duration-300",
 
         link: "text-brand-primary font-medium underline-offset-4 hover:underline hover:text-brand-primarydark dark:text-brand-primarydark dark:hover:text-brand-primary transition-colors",
       },
       size: {
-        default: "px-8 py-3", // Updated to match HTML padding
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        default: "px-4 py-2", // Updated to match HTML padding
+        sm: "h-8 rounded-md px-2",
+        lg: "h-10 rounded-md px-4",
+        icon: "h-8 w-8",
       },
     },
     defaultVariants: {
@@ -89,15 +89,28 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     if (variant === "hero") {
       return (
         <button
-          className={cn("group relative inline-block focus:outline-none rounded-tl-[2rem] rounded-br-[2rem]", className)}
+          className={cn("group relative inline-block focus:outline-none", className)}
+          style={{
+            borderRadius: "clamp(1rem, 3vw, 2rem) 0 clamp(1rem, 3vw, 2rem) 0"
+          }}
           ref={ref}
           {...props}
         >
           {/* Gradient Border Background */}
-          <div className="absolute inset-0 rounded-tl-[2rem] rounded-br-[2rem] bg-gradient-to-br from-brand-primarydark via-brand-tertiary to-brand-secondary transition-transform duration-300 ease-out group-hover:scale-105"></div>
+          <div
+            className="absolute inset-0 bg-gradient-to-br from-brand-primarydark via-brand-tertiary to-brand-secondary transition-transform duration-300 ease-out group-hover:scale-105"
+            style={{
+              borderRadius: "clamp(1rem, 3vw, 2rem) 0 clamp(1rem, 3vw, 2rem) 0"
+            }}
+          ></div>
 
           {/* Inner Content with White Background */}
-          <div className="relative m-[2px] flex items-center justify-center gap-2 bg-white dark:bg-[#1a1a1a] px-8 py-3.5 rounded-tl-[calc(2rem-2px)] rounded-br-[calc(2rem-2px)] transition-all duration-300 ease-out group-hover:bg-[#f5f5f5] dark:group-hover:bg-[#2a2a2a]">
+          <div
+            className="relative m-[2px] flex items-center justify-center gap-2 bg-white dark:bg-[#1a1a1a] px-8 py-3.5 transition-all duration-300 ease-out group-hover:bg-[#f5f5f5] dark:group-hover:bg-[#2a2a2a]"
+            style={{
+              borderRadius: "calc(clamp(1rem, 3vw, 2rem) - 2px) 0 calc(clamp(1rem, 3vw, 2rem) - 2px) 0"
+            }}
+          >
             {/* Gradient Text with Animation */}
             <span className="text-lg font-bold bg-gradient-to-r from-brand-primary via-brand-tertiary to-brand-secondary bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient-x">
               {children}

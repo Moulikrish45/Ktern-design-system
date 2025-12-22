@@ -46,6 +46,7 @@ export const DialogModal = ({
                     </div>
                     <button
                         onClick={onClose}
+                        aria-label="Close dialog"
                         className="text-text-muted-light hover:text-text-main-light transition-colors p-1 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

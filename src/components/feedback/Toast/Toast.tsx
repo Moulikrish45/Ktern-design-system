@@ -116,6 +116,7 @@ export const Toast = ({
 
                 <button
                     onClick={onClose}
+                    aria-label="Close notification"
                     className="flex-shrink-0 w-6 h-6 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-text-muted-light dark:text-text-muted-dark hover:text-text-main-light dark:hover:text-text-main-dark transition-all flex items-center justify-center"
                 >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,9 +1,10 @@
 import React from 'react';
+import { StatusBadge } from '@/components/atoms/StatusBadge';
 
 // Icon component for reusability
 const IconCard = ({ name, children }: { name: string; children: React.ReactNode }) => (
-    <div className="group relative bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark hover:border-brand-secondary/50 hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer">
-        <div className="flex justify-center mb-4 text-text-main-light dark:text-gray-200">
+    <div className="group relative bg-surface-light p-6 rounded-xl border border-border-light hover:border-brand-secondary/50 hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer">
+        <div className="flex justify-center mb-4 text-text-main-light">
             {children}
         </div>
         <div className="text-center">
@@ -16,12 +17,12 @@ const IconCard = ({ name, children }: { name: string; children: React.ReactNode 
 export const Iconography = () => {
     return (
         <section id="iconography" className="mb-24 scroll-mt-24">
-            <div className="flex items-end justify-between mb-8 pb-2 border-b border-border-light dark:border-border-dark">
+            <div className="flex items-end justify-between mb-8 pb-2 border-b border-border-light">
                 <div>
                     <div className="inline-flex items-center gap-2 mb-2">
-                        <span className="px-2 py-1 rounded bg-brand-secondary/10 text-brand-secondary text-xs font-bold uppercase tracking-wider">
+                        <StatusBadge variant="info" size="sm" showDot>
                             Asset Library
-                        </span>
+                        </StatusBadge>
                     </div>
                     <h2 className="text-2xl font-bold font-sans text-brand-primary">
                         Iconography <span className="text-brand-secondary">.</span>
@@ -29,16 +30,16 @@ export const Iconography = () => {
                 </div>
             </div>
 
-            <p className="text-text-muted-light dark:text-text-muted-dark max-w-2xl mb-12">
+            <p className="text-text-muted-light max-w-2xl mb-12">
                 Official iconography for KTern.AI.
-                <br /><strong>Rule:</strong> Neutral geometry for structure, <span className="text-brand-secondary font-bold">#ff8f00</span> for the active element ("The Amber Spark").
+                <br /><strong>Rule:</strong> Neutral geometry for structure, <span className="text-brand-primary font-bold">#ff8f00</span> for the active element ("The Amber Spark").
             </p>
 
             <div className="space-y-16">
                 {/* SECTION: ACTION / AI */}
                 <div>
-                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-text-main-light dark:text-text-main-dark">
-                        <span className="w-2 h-2 bg-brand-secondary rounded-full"></span>
+                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-text-main-light">
+                        <span className="w-2 h-2 bg-brand-primary rounded-full"></span>
                         Action & Intelligence
                         <span className="text-xs font-normal text-text-muted-light ml-auto">Spark indicates: Energy source</span>
                     </h3>
@@ -67,7 +68,7 @@ export const Iconography = () => {
                         <IconCard name="rocket">
                             <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M21.737 1.5c-5.397.006-9.981 2.975-13.253 6H2.25l-.75.75v4.5l.221.531 1.487 1.487.002.014 6 6 .014.002 1.499 1.499.277.217h4.5l.75-.75v-6.231c3.029-3.268 5.994-7.85 5.988-13.269zM3 9h3.965a36 36 0 0 0-3.338 4.065L3 12.441zm8.55 12-.63-.635a35.4 35.4 0 0 0 4.073-3.324V21zm-1.715-1.716L4.704 14.156C6.192 12 12.569 3.533 20.967 3.024c-.489 8.418-8.981 14.78-11.132 16.26M6 22.5v-1.5H3v-3H1.5v4.5zm10.122-11.5a2.25 2.25 0 1 0-3.744-2.499 2.25 2.25 0 0 0 3.744 2.499z" fill="currentColor" />
-                                <path d="M6 22.5v-1.5H3v-3H1.5v4.5z" fill="#ff8f00" />
+                                <path d="M6 22.5v-1.5H3v-3H1.5v4.5z" className='text-brand-secondary' stroke="currentColor" />
                             </svg>
                         </IconCard>
 
@@ -78,13 +79,47 @@ export const Iconography = () => {
                                 <path d="M22 4L12 14.01l-3-3" className="text-brand-secondary" stroke="currentColor" />
                             </svg>
                         </IconCard>
+
+                        {/* Compass/Direction */}
+                        <IconCard name="compass">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" className="text-brand-secondary" stroke="currentColor" fill="currentColor" fillOpacity="0.3" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Brain/AI */}
+                        <IconCard name="brain">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
+                                <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
+                                <circle cx="12" cy="12" r="2" className="text-brand-secondary" fill="currentColor" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Zap/Energy */}
+                        <IconCard name="zap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                                <path d="M12 14L11 22" className="text-brand-secondary" stroke="currentColor" strokeWidth="3" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Target */}
+                        <IconCard name="target">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="12" cy="12" r="6" />
+                                <circle cx="12" cy="12" r="2" className="text-brand-secondary" fill="currentColor" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
                     </div>
                 </div>
 
                 {/* SECTION: UTILITY */}
                 <div>
-                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-text-main-light dark:text-text-main-dark">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-text-main-light">
+                        <span className="w-2 h-2 bg-brand-primary rounded-full"></span>
                         Utility & System
                         <span className="text-xs font-normal text-text-muted-light ml-auto">Spark indicates: Interactive part</span>
                     </h3>
@@ -121,12 +156,87 @@ export const Iconography = () => {
                                 <path d="M12 15l-4 1 1-4" className="text-brand-secondary" stroke="currentColor" />
                             </svg>
                         </IconCard>
+
+                        {/* Download */}
+                        <IconCard name="download">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" className="text-brand-secondary" stroke="currentColor" />
+                                <line x1="12" y1="15" x2="12" y2="3" className="text-brand-secondary" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Upload */}
+                        <IconCard name="upload">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="17 8 12 3 7 8" className="text-brand-secondary" stroke="currentColor" />
+                                <line x1="12" y1="3" x2="12" y2="15" className="text-brand-secondary" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Trash */}
+                        <IconCard name="trash">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="3 6 5 6 21 6" />
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                <line x1="10" y1="11" x2="10" y2="17" className="text-brand-secondary" stroke="currentColor" />
+                                <line x1="14" y1="11" x2="14" y2="17" className="text-brand-secondary" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Copy */}
+                        <IconCard name="copy">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" className="text-brand-secondary" fill="currentColor" fillOpacity="0.1" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Bell/Notifications */}
+                        <IconCard name="bell">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                                <circle cx="18" cy="8" r="3" className="text-brand-secondary" fill="currentColor" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Refresh/Sync */}
+                        <IconCard name="refresh">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21.5 2v6h-6" />
+                                <path d="M2.5 22v-6h6" />
+                                <path d="M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
+                                <path d="M15.5 8l6-6" className="text-brand-secondary" stroke="currentColor" />
+                                <path d="M8.5 16l-6 6" className="text-brand-secondary" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Link/Chain */}
+                        <IconCard name="link">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                                <circle cx="12" cy="12" r="1.5" className="text-brand-secondary" fill="currentColor" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Eye/View */}
+                        <IconCard name="eye">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                                <circle cx="12" cy="12" r="1" className="text-brand-secondary" fill="currentColor" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
                     </div>
                 </div>
 
                 {/* SECTION: BRAND / GOVERNANCE */}
                 <div>
-                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-text-main-light dark:text-text-main-dark">
+                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-text-main-light">
                         <span className="w-2 h-2 bg-brand-primary rounded-full"></span>
                         Governance & Brand
                         <span className="text-xs font-normal text-text-muted-light ml-auto">Spark indicates: Core component</span>
@@ -171,6 +281,83 @@ export const Iconography = () => {
                                 <line x1="16" y1="13" x2="8" y2="13" className="text-brand-secondary" stroke="currentColor" />
                                 <line x1="16" y1="17" x2="8" y2="17" />
                                 <line x1="10" y1="9" x2="8" y2="9" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Lock/Security */}
+                        <IconCard name="lock">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                <circle cx="12" cy="16" r="1" className="text-brand-secondary" fill="currentColor" stroke="currentColor" strokeWidth="2" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Key */}
+                        <IconCard name="key">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+                                <circle cx="7" cy="17" r="2" className="text-brand-secondary" fill="currentColor" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Database */}
+                        <IconCard name="database">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                                <path d="M3 12v2c0 1.66 4 3 9 3s9-1.34 9-3v-2" className="text-brand-secondary" fill="currentColor" fillOpacity="0.2" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Chart Bar */}
+                        <IconCard name="chart-bar">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="12" y1="20" x2="12" y2="10" />
+                                <line x1="18" y1="20" x2="18" y2="4" />
+                                <line x1="6" y1="20" x2="6" y2="16" />
+                                <line x1="18" y1="4" x2="18" y2="8" className="text-brand-secondary" stroke="currentColor" strokeWidth="3" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Users/Team */}
+                        <IconCard name="users">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                <circle cx="9" cy="7" r="2" className="text-brand-secondary" fill="currentColor" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Calendar/Schedule */}
+                        <IconCard name="calendar">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                                <rect x="7" y="14" width="3" height="3" className="text-brand-secondary" fill="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Folder/Organization */}
+                        <IconCard name="folder">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+                                <path d="M2 8h20" />
+                                <circle cx="12" cy="14" r="2" className="text-brand-secondary" fill="currentColor" stroke="currentColor" />
+                            </svg>
+                        </IconCard>
+
+                        {/* Award/Achievement */}
+                        <IconCard name="award">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="stroke-current stroke-2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="8" r="7" />
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                                <circle cx="12" cy="8" r="3" className="text-brand-secondary" fill="currentColor" stroke="currentColor" />
                             </svg>
                         </IconCard>
                     </div>
