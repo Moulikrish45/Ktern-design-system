@@ -32,7 +32,7 @@ const preview: Preview = {
     },
 
     decorators: [
-        (Story, context) => {
+        (Story: any, context: any) => {
             // LIGHT MODE ONLY ENFORCEMENT
             // Always remove 'dark' class and ensure 'light' is applied
             React.useEffect(() => {

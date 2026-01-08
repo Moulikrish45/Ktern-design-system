@@ -26,11 +26,11 @@ const config: StorybookConfig = {
         reactDocgen: "react-docgen-typescript",
         reactDocgenTypescriptOptions: {
             shouldExtractLiteralValuesFromEnum: true,
-            propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+            propFilter: (prop: any) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
         },
     },
     // This is the specific fix for the Windows path issue
-    viteFinal: async (config) => {
+    viteFinal: async (config: any) => {
         return mergeConfig(config, {
             resolve: {
                 ...config.resolve,

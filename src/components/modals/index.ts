@@ -1,1 +1,1 @@
-export { DialogModal } from './DialogModal/index';
+// Modals exports
