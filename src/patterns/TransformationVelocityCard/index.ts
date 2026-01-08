@@ -1,1 +1,0 @@
-export { TransformationVelocityCard } from './TransformationVelocityCard';

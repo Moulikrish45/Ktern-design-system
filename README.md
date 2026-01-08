@@ -1,4 +1,5 @@
 # Ktern Design System
+
 ### Codename: Arctic Horizon
 
 <p align="center">
@@ -63,13 +64,13 @@ src/components/
 └── patterns/       # Business-specific compositions (reference examples)
 ```
 
-| Level | Description | Examples |
-|-------|-------------|----------|
-| **Atoms** | Indivisible UI elements | Button, Input, Badge, Avatar, Switch |
-| **Molecules** | Groups of atoms working together | Card, Dialog, DropdownMenu, Select |
-| **Foundation** | Layout and spacing primitives | Box, Stack, Grid, Container |
-| **Templates** | Page-level layout structures | Dashboard |
-| **Patterns** | Business-specific compositions | ProjectCard, StatusCard |
+| Level          | Description                      | Examples                             |
+| -------------- | -------------------------------- | ------------------------------------ |
+| **Atoms**      | Indivisible UI elements          | Button, Input, Badge, Avatar, Switch |
+| **Molecules**  | Groups of atoms working together | Card, Dialog, DropdownMenu, Select   |
+| **Foundation** | Layout and spacing primitives    | Box, Stack, Grid, Container          |
+| **Templates**  | Page-level layout structures     |                                      |
+| **Patterns**   | Business-specific compositions   | ProjectCard, StatusCard              |
 
 ### Composition Over Configuration
 
@@ -77,7 +78,7 @@ We follow the **Composition Pattern** instead of prop explosion:
 
 ```tsx
 // ❌ Anti-pattern: Monolithic component
-<TextInput 
+<TextInput
   label="Email"
   helperText="Enter your email"
   errorText="Invalid email"
@@ -118,9 +119,7 @@ Three-layer architecture for runtime theme switching:
 
 ```tsx
 /* Layer 3: Tailwind (Developers use semantic names) */
-<Button className="bg-primary text-primary-foreground">
-  Click me
-</Button>
+<Button className="bg-primary text-primary-foreground">Click me</Button>
 ```
 
 ---
@@ -129,34 +128,34 @@ Three-layer architecture for runtime theme switching:
 
 ### Atoms
 
-| Component | Description | Features |
-|-----------|-------------|----------|
-| **Button** | Primary interactive element | 8 variants, loading state, icon support |
-| **Input** | Text input field | Validation states, ForwardRef |
-| **Badge** | Status indicator | Multiple variants, semantic colors |
-| **Avatar** | User profile image | Radix UI, fallback support, sizes |
-| **Switch** | Toggle control | Radix UI, full accessibility |
-| **Skeleton** | Loading placeholder | Tailwind animate-pulse |
-| **Label** | Form label | Semantic HTML |
-| **Textarea** | Multi-line input | Auto-resize option |
+| Component    | Description                 | Features                                |
+| ------------ | --------------------------- | --------------------------------------- |
+| **Button**   | Primary interactive element | 8 variants, loading state, icon support |
+| **Input**    | Text input field            | Validation states, ForwardRef           |
+| **Badge**    | Status indicator            | Multiple variants, semantic colors      |
+| **Avatar**   | User profile image          | Radix UI, fallback support, sizes       |
+| **Switch**   | Toggle control              | Radix UI, full accessibility            |
+| **Skeleton** | Loading placeholder         | Tailwind animate-pulse                  |
+| **Label**    | Form label                  | Semantic HTML                           |
+| **Textarea** | Multi-line input            | Auto-resize option                      |
 
 ### Molecules
 
-| Component | Description | Features |
-|-----------|-------------|----------|
-| **Card** | Content container | Compound components (Header, Title, Content, Footer) |
-| **Dialog** | Modal dialog | Radix UI, focus trap, accessibility |
-| **DropdownMenu** | Context menu | Radix UI, sub-menus, keyboard nav |
-| **Select** | Dropdown selector | Radix UI, typeahead |
+| Component        | Description       | Features                                             |
+| ---------------- | ----------------- | ---------------------------------------------------- |
+| **Card**         | Content container | Compound components (Header, Title, Content, Footer) |
+| **Dialog**       | Modal dialog      | Radix UI, focus trap, accessibility                  |
+| **DropdownMenu** | Context menu      | Radix UI, sub-menus, keyboard nav                    |
+| **Select**       | Dropdown selector | Radix UI, typeahead                                  |
 
 ### Foundation (Layout Primitives)
 
-| Component | Description | Props |
-|-----------|-------------|-------|
-| **Box** | Polymorphic container | `as`, `className` |
-| **Stack** | Flexbox layout | `direction`, `gap`, `align`, `justify` |
-| **Grid** | CSS Grid layout | `columns`, `gap` |
-| **Container** | Max-width wrapper | `size` (sm/md/lg/xl/full) |
+| Component     | Description           | Props                                  |
+| ------------- | --------------------- | -------------------------------------- |
+| **Box**       | Polymorphic container | `as`, `className`                      |
+| **Stack**     | Flexbox layout        | `direction`, `gap`, `align`, `justify` |
+| **Grid**      | CSS Grid layout       | `columns`, `gap`                       |
+| **Container** | Max-width wrapper     | `size` (sm/md/lg/xl/full)              |
 
 ```tsx
 // Polymorphic support
@@ -185,17 +184,17 @@ Three-layer architecture for runtime theme switching:
 The design system supports white-labeling through custom brand colors:
 
 ```tsx
-import { applyCustomTheme, resetCustomTheme } from '@ktern/design-system'
+import { applyCustomTheme, resetCustomTheme } from "@ktern/design-system";
 
 // Apply custom brand colors (RGB format)
 applyCustomTheme({
-  colorBrandPrimary: '220 80 50',
-  colorBrandSecondary: '180 60 45',
-  colorSuccess: '45 90 55',
-})
+  colorBrandPrimary: "220 80 50",
+  colorBrandSecondary: "180 60 45",
+  colorSuccess: "45 90 55",
+});
 
 // Reset to default theme
-resetCustomTheme()
+resetCustomTheme();
 ```
 
 > **Note:** Dark mode has been disabled per stakeholder requirements. The system
@@ -227,11 +226,13 @@ npm run generate
 ```
 
 Follow the prompts:
+
 1. Select component type (atom, molecule, foundation, etc.)
 2. Enter component name (e.g., `Tooltip`)
 3. Choose if CVA variants are needed
 
 **Generated files:**
+
 ```
 src/components/atoms/Tooltip/
 ├── Tooltip.tsx          # Component implementation
@@ -257,6 +258,7 @@ npm run test:ui
 ```
 
 **Testing Stack:**
+
 - **Vitest** — Fast unit testing
 - **React Testing Library** — Component testing
 - **Chromatic** — Visual regression testing
@@ -278,6 +280,7 @@ feat: Added button   # Wrong tense
 ```
 
 **Pre-commit checks (automatic):**
+
 1. `npm run lint` — ESLint + jsx-a11y
 2. `npm run type-check` — TypeScript validation
 3. `npm test` — Unit tests
@@ -297,6 +300,7 @@ npm run pack:local
 ```
 
 **Output:**
+
 - `dist/index.mjs` — ES Module
 - `dist/index.js` — CommonJS
 - `dist/index.d.ts` — TypeScript declarations
@@ -312,9 +316,10 @@ The library is configured for optimal tree shaking:
 ```
 
 **Consumer benefits:**
+
 ```typescript
 // Only imports Button code
-import { Button } from '@ktern/design-system'
+import { Button } from "@ktern/design-system";
 
 // Input, Badge, etc. are tree-shaken away ✂️
 ```
@@ -327,8 +332,8 @@ In your root file (e.g., `app/layout.tsx`), import the design system's CSS:
 
 ```tsx
 // Import THIS before your own globals.css
-import '@ktern/design-system/dist/style.css'; 
-import './globals.css';
+import "@ktern/design-system/dist/style.css";
+import "./globals.css";
 ```
 
 ### 2. Configure Tailwind
@@ -341,10 +346,10 @@ module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     // Add this line:
-    "./node_modules/@ktern/design-system/dist/**/*.{js,mjs}"
+    "./node_modules/@ktern/design-system/dist/**/*.{js,mjs}",
   ],
   // ...
-}
+};
 ```
 
 ### 3. Usage
@@ -352,13 +357,13 @@ module.exports = {
 Import components directly:
 
 ```tsx
-import { 
-  Button, 
-  Card, 
-  CardHeader, 
+import {
+  Button,
+  Card,
+  CardHeader,
   CardTitle,
   Stack,
-} from '@ktern/design-system'
+} from "@ktern/design-system";
 
 function App() {
   return (
@@ -370,7 +375,7 @@ function App() {
       </Card>
       <Button variant="primary">Get Started</Button>
     </Stack>
-  )
+  );
 }
 ```
 
@@ -417,8 +422,7 @@ src/
 │   └── utils.ts            # cn() utility
 ├── patterns/               # Business-specific examples
 │   ├── ProjectCard/
-│   ├── OverallStatusCard/
-│   └── TransformationVelocityCard/
+│   └── OverallStatusCard/
 └── index.ts                # Main exports
 ```
 
@@ -426,18 +430,18 @@ src/
 
 ## 🔧 Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start Next.js development server |
-| `npm run storybook` | Start Storybook on port 6006 |
-| `npm run build:lib` | Build library for distribution |
-| `npm run pack:local` | Create local npm package |
-| `npm test` | Run unit tests |
-| `npm run test:coverage` | Run tests with coverage |
-| `npm run lint` | Run ESLint |
-| `npm run type-check` | TypeScript validation |
-| `npm run generate` | Scaffold new component |
-| `npm run chromatic` | Run visual regression tests |
+| Command                 | Description                      |
+| ----------------------- | -------------------------------- |
+| `npm run dev`           | Start Next.js development server |
+| `npm run storybook`     | Start Storybook on port 6006     |
+| `npm run build:lib`     | Build library for distribution   |
+| `npm run pack:local`    | Create local npm package         |
+| `npm test`              | Run unit tests                   |
+| `npm run test:coverage` | Run tests with coverage          |
+| `npm run lint`          | Run ESLint                       |
+| `npm run type-check`    | TypeScript validation            |
+| `npm run generate`      | Scaffold new component           |
+| `npm run chromatic`     | Run visual regression tests      |
 
 ---
 
@@ -447,13 +451,13 @@ src/
 
 Every commit is validated:
 
-| Check | Tool | Purpose |
-|-------|------|---------|
-| Linting | ESLint + jsx-a11y | Code quality & accessibility |
-| Type Checking | TypeScript | Type safety |
-| Unit Tests | Vitest | Regression prevention |
-| Commit Messages | Commitlint | Clean git history |
-| Visual Regression | Chromatic | UI consistency |
+| Check             | Tool              | Purpose                      |
+| ----------------- | ----------------- | ---------------------------- |
+| Linting           | ESLint + jsx-a11y | Code quality & accessibility |
+| Type Checking     | TypeScript        | Type safety                  |
+| Unit Tests        | Vitest            | Regression prevention        |
+| Commit Messages   | Commitlint        | Clean git history            |
+| Visual Regression | Chromatic         | UI consistency               |
 
 ### Accessibility
 

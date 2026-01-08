@@ -10,9 +10,6 @@ export * from './atoms/Checkbox';
 export * from './molecules/Card';
 export * from './molecules/Dialog';
 
-// Templates
-export * from './templates/Dashboard';
-
 // Cards
 export * from './cards/StatCard';
 // Business cards moved to patterns/
@@ -36,9 +33,6 @@ export * from './navigation/UnderlineTabs';
 export * from './dataviz/BarChart';
 export * from './dataviz/DonutChart';
 export * from './dataviz/SparklineChart';
-
-// Modals
-export * from './modals/DialogModal';
 
 // Feedback
 export * from './feedback/Toast';
